@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --surface-2: #eef4fa;
+  --border: rgba(15, 23, 42, 0.11);
+  --text: #171b22;
+  --text-muted: #5f6875;
+  --primary: #0785ff;
+  --accent: #0f766e;
+  --accent-2: #e77822;
+  --gradient: linear-gradient(90deg, #0b84ff 0%, #2563eb 48%, #0f766e 100%);
+  --background: var(--bg);
+  --foreground: var(--text);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-geist);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(11, 132, 255, 0.1), transparent 28rem),
+    linear-gradient(120deg, #f2f7fd 0%, #ffffff 54%, #f7fbf8 100%);
+  color: var(--text);
+  font-family: 'Inter', var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(7, 133, 255, 0.22);
+  color: var(--text);
+}
+
+button,
+a {
+  min-height: 44px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(7, 133, 255, 0.28);
+  outline-offset: 3px;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 60px rgba(30, 41, 59, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 8px;
+  background: #0785ff;
+  color: white;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(7, 133, 255, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #1a1a2e 25%, #22223b 50%, #1a1a2e 75%);
+  background-size: 200% 100%;
+  border-radius: 12px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #22c55e;
+  animation: pulse-green 2s infinite;
+}
+
+.site-container {
+  width: min(calc(100% - 32px), 1140px);
+  margin-inline: auto;
+}
+
+.section-kicker {
+  color: #0785ff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.soft-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 40px rgba(30, 41, 59, 0.06);
+}
+
+.premium-surface {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 60px rgba(20, 35, 58, 0.08);
+}
+
+@media (max-width: 480px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .site-container {
+    width: min(calc(100% - 24px), 1120px);
+  }
+}
