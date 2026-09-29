@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:1
+
+FROM node:20 AS deps
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+WORKDIR /app
+
+COPY package.json package-lock.json turbo.json eslint.config.ts ./
+COPY apps/ ./apps/
+
+RUN npm ci --no-audit --no-fund
+
+FROM deps AS build
+
+ARG NEXT_PUBLIC_MEDUSA_BACKEND_URL
+ARG NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+ARG NEXT_PUBLIC_DEFAULT_REGION
+ARG NEXT_PUBLIC_BASE_URL
+ARG NEXT_PUBLIC_STRIPE_KEY
+
+ENV NODE_ENV=production
+ENV NEXT_PUBLIC_MEDUSA_BACKEND_URL=$NEXT_PUBLIC_MEDUSA_BACKEND_URL
+ENV NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=$NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+ENV NEXT_PUBLIC_DEFAULT_REGION=$NEXT_PUBLIC_DEFAULT_REGION
+ENV NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL
+ENV NEXT_PUBLIC_STRIPE_KEY=$NEXT_PUBLIC_STRIPE_KEY
+
+RUN npx turbo run build --filter=@dtc/storefront
+
+FROM node:20 AS runtime
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+WORKDIR /app
+
+COPY --from=build /app /app
+
+WORKDIR /app/apps/storefront
+
+EXPOSE 8000
+
+COPY docker/scripts/storefront-entrypoint.sh /usr/local/bin/storefront-entrypoint.sh
+
+CMD ["sh", "/usr/local/bin/storefront-entrypoint.sh"]

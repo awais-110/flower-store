@@ -30,17 +30,16 @@
   }
 }
 
-@layer utilities {
-  /* Scrollbar hiding */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar::-webkit-scrollbar-track { background-color: transparent; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* Float label utility */
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
+@layer components {
+  .price-premium {
+    @apply text-deep-sage font-semibold text-base sm:text-lg;
   }
+  .banner-premium {
+    @apply bg-cream-light border border-sage/20 rounded-lg shadow-lg;
+  }
+}
+
+
   input:focus ~ label { @apply left-0; }
 
   /* Autofill suppression */
@@ -93,7 +92,7 @@
     content: '';
     @apply flex-1 h-px bg-sage/20;
   }
-}
+
 
 @layer components {
   .content-container {

@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1
+
+FROM node:20 AS deps
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+WORKDIR /app
+
+COPY package.json package-lock.json turbo.json eslint.config.ts ./
+COPY apps/ ./apps/
+
+RUN npm ci --no-audit --no-fund
+
+FROM deps AS build
+
+RUN npx turbo run build --filter=@dtc/backend
+
+FROM node:20 AS runtime
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+WORKDIR /app
+
+COPY --from=build /app /app
+
+WORKDIR /app/apps/backend
+
+EXPOSE 9000
+
+COPY docker/scripts/backend-entrypoint.sh /usr/local/bin/backend-entrypoint.sh
+
+CMD ["sh", "/usr/local/bin/backend-entrypoint.sh"]
