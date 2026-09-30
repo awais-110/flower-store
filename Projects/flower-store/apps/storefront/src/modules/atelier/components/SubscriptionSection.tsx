@@ -68,12 +68,18 @@ export const SubscriptionSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 bg-blush/40 px-3 py-1 rounded-full text-charcoal text-[11px] uppercase tracking-widest font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-sage" />
+          <div className="inline-flex items-center gap-1.5 bg-petal-veil/20 px-3.5 py-1 rounded-full text-charcoal text-[11px] uppercase tracking-widest font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-petal-veil" />
             <span>Botanical Continuity</span>
           </div>
-          <h3 className="font-editorial text-4xl sm:text-5xl text-charcoal font-normal">
-            Bespoke Floral Subscriptions
+          <h3 className="text-4xl sm:text-5xl text-charcoal font-normal">
+            <span className="font-editorial">Bespoke Floral </span>
+            <span
+              className="font-geraldine text-5xl sm:text-6xl text-petal-veil font-normal lowercase inline-block px-1 align-middle"
+              style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+            >
+              subscriptions
+            </span>
           </h3>
           <p className="text-xs sm:text-sm text-charcoal-muted font-sans max-w-lg mx-auto">
             Invite timeless living beauty into your sanctuary on a seamless recurring schedule. Pause, redirect, or swap arrangements at any whim.

@@ -22,8 +22,14 @@ export const CustomBouquetHeroBanner: React.FC = () => {
               <span>Interactive Atelier Experience</span>
             </div>
 
-            <h3 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-cream font-light leading-[1.12] tracking-[-0.01em]">
-              Compose Your Own Floral Masterpiece.
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl text-cream font-light leading-[1.15] tracking-[-0.01em]">
+              <span className="font-editorial">Compose Your Own </span>
+              <span
+                className="font-geraldine text-5xl sm:text-6xl lg:text-7xl text-coral-blossom font-normal lowercase inline-block px-1 align-middle"
+                style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+              >
+                floral masterpiece.
+              </span>
             </h3>
 
             <p className="text-xs sm:text-sm text-cream/85 font-sans leading-relaxed max-w-xl font-light">

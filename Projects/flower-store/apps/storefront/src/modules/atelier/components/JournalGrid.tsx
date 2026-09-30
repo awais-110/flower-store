@@ -51,11 +51,17 @@ export const JournalGrid: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 pb-4 border-b border-sage/15 gap-4">
           <div>
-            <span className="text-[11px] uppercase tracking-[0.25em] text-sage font-semibold block mb-1">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-petal-veil font-semibold block mb-1">
               The Botanical Chronicle
             </span>
-            <h3 className="font-editorial text-3xl sm:text-4xl text-charcoal font-normal">
-              Atelier Journal & Care Guides
+            <h3 className="text-3xl sm:text-4xl text-charcoal font-normal">
+              <span className="font-editorial">Atelier Journal &amp; </span>
+              <span
+                className="font-geraldine text-4xl sm:text-5xl text-petal-veil font-normal lowercase inline-block px-1 align-middle"
+                style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+              >
+                care guides
+              </span>
             </h3>
           </div>
 

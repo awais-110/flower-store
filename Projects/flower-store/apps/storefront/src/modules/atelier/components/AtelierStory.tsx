@@ -35,11 +35,17 @@ export const AtelierStory: React.FC = () => {
     <section id="delivery" className="py-20 sm:py-28 bg-cream border-t border-sage/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-[11px] uppercase tracking-[0.3em] text-sage font-semibold">
+          <span className="text-[11px] uppercase tracking-[0.3em] text-petal-veil font-semibold">
             The Atelier Standard
           </span>
-          <h3 className="font-editorial text-3xl sm:text-4xl text-charcoal font-normal">
-            Why Discerning Clients Choose Atelier Fleur
+          <h3 className="text-3xl sm:text-4xl text-charcoal font-normal">
+            <span className="font-editorial">Why Discerning Clients Choose </span>
+            <span
+              className="font-geraldine text-4xl sm:text-5xl text-petal-veil font-normal inline-block px-1 align-middle"
+              style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+            >
+              Camelia
+            </span>
           </h3>
           <p className="text-xs sm:text-sm text-charcoal-muted font-sans">
             Meticulously engineered white-glove flower care from dawn harvest to recipient mantelpiece.

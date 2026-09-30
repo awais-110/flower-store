@@ -34,11 +34,11 @@ export const CollectionRail: React.FC<CollectionRailProps> = ({
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-sage/15 gap-4">
           <div>
-            <span className="text-[11px] uppercase tracking-[0.25em] text-sage font-semibold block mb-1">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-petal-veil font-semibold block mb-1">
               Morning Cut · Seasonal
             </span>
             <h3 className="font-editorial text-3xl sm:text-4xl text-charcoal font-normal">
-              {title}
+              Signature <span className="font-geraldine text-4xl sm:text-5xl text-petal-veil font-normal lowercase inline-block px-1 align-middle" style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}>curations</span>
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-muted mt-1 font-sans max-w-lg">
               {subtitle}

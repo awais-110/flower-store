@@ -30,11 +30,11 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-sage/15 gap-6">
           <div className="space-y-2">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-sage font-semibold block">
-              Permanent & Seasonal Curation
+            <span className="text-[11px] uppercase tracking-[0.25em] text-petal-veil font-semibold block">
+              Permanent &amp; Seasonal Curation
             </span>
             <h3 className="font-editorial text-3xl sm:text-5xl text-charcoal font-normal">
-              {title}
+              The Atelier <span className="font-geraldine text-4xl sm:text-6xl text-petal-veil font-normal lowercase inline-block px-1 align-middle" style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}>floral collection</span>
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-muted max-w-lg font-sans">
               {subtitle}

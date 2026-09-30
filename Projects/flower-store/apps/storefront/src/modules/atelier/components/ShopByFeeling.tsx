@@ -61,20 +61,26 @@ export const ShopByFeeling: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-[11px] uppercase tracking-[0.35em] text-sage font-semibold">
+          <span className="text-[11px] uppercase tracking-[0.35em] text-petal-veil font-semibold">
             Emotions &amp; Intentions
           </span>
-          <h2 className="font-editorial text-4xl sm:text-5xl text-charcoal font-light mt-3 mb-4">
-            How Are You Feeling?
+          <h2 className="text-4xl sm:text-5xl text-charcoal font-light mt-3 mb-4">
+            <span className="font-editorial">How Are You </span>
+            <span
+              className="font-geraldine text-5xl sm:text-6xl text-petal-veil font-normal lowercase inline-block px-1 -rotate-1 align-middle"
+              style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+            >
+              feeling?
+            </span>
           </h2>
           <p className="text-sm text-charcoal-muted font-sans leading-relaxed">
             Every arrangement is composed for a specific emotion — let flowers speak when words fall short.
           </p>
           {/* Decorative rule */}
           <div className="flex items-center gap-3 mt-6 justify-center">
-            <span className="h-px w-12 bg-gold/40 block" />
-            <span className="text-gold text-base">✦</span>
-            <span className="h-px w-12 bg-gold/40 block" />
+            <span className="h-px w-12 bg-petal-veil/40 block" />
+            <span className="text-petal-veil text-base">✦</span>
+            <span className="h-px w-12 bg-petal-veil/40 block" />
           </div>
         </div>
 

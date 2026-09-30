@@ -51,8 +51,15 @@ export const SignatureCampaign: React.FC = () => {
               </span>
             </div>
 
-            <h3 className="font-editorial text-3xl sm:text-5xl text-charcoal font-light leading-[1.15]">
-              Arranged as living architecture, never as commodity.
+            <h3 className="text-3xl sm:text-5xl text-charcoal font-light leading-[1.18]">
+              <span className="font-editorial">Arranged as </span>
+              <span
+                className="font-geraldine text-4xl sm:text-6xl text-petal-veil font-normal lowercase inline-block px-1 align-middle"
+                style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+              >
+                living architecture,
+              </span>
+              <span className="font-editorial block sm:inline"> never as commodity.</span>
             </h3>
 
             <p className="text-xs sm:text-sm text-charcoal-muted font-sans leading-relaxed">

@@ -7,13 +7,19 @@ export const ConciergeSection: React.FC = () => {
   return (
     <section id="concierge" className="py-24 sm:py-32 bg-deep-sage text-cream relative overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <div className="inline-flex items-center gap-2 bg-sage/40 border border-sage/40 px-3.5 py-1.5 rounded-full text-blush text-[11px] uppercase tracking-[0.25em] font-semibold">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-coral-blossom/30 px-4 py-1.5 rounded-full text-coral-blossom text-[11px] uppercase tracking-[0.25em] font-semibold">
+          <Sparkles className="w-3.5 h-3.5 text-petal-veil" />
           <span>Haute Botanique Concierge</span>
         </div>
 
-        <h3 className="font-editorial text-4xl sm:text-6xl text-white font-light tracking-wide max-w-3xl mx-auto leading-tight">
-          NEED SOMETHING EXTRAORDINARY?
+        <h3 className="text-3xl sm:text-5xl lg:text-6xl text-cream font-light tracking-wide max-w-3xl mx-auto leading-tight">
+          <span className="font-editorial">Need Something </span>
+          <span
+            className="font-geraldine text-4xl sm:text-6xl lg:text-7xl text-coral-blossom font-normal lowercase inline-block px-1 align-middle"
+            style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+          >
+            extraordinary?
+          </span>
         </h3>
 
         <p className="text-xs sm:text-base text-cream/80 font-sans max-w-2xl mx-auto leading-relaxed">

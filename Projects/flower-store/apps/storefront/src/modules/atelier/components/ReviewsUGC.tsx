@@ -81,11 +81,17 @@ export const ReviewsUGC: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Reviews Grid */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-[11px] uppercase tracking-[0.3em] text-sage font-semibold">
+          <span className="text-[11px] uppercase tracking-[0.3em] text-petal-veil font-semibold">
             Patron Testimonials
           </span>
-          <h3 className="font-editorial text-3xl sm:text-4xl text-charcoal font-normal">
-            Voices of the Salon
+          <h3 className="text-3xl sm:text-4xl text-charcoal font-normal">
+            <span className="font-editorial">Voices of the </span>
+            <span
+              className="font-geraldine text-4xl sm:text-5xl text-petal-veil font-normal lowercase inline-block px-1 align-middle"
+              style={{ fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif" }}
+            >
+              salon
+            </span>
           </h3>
           <p className="text-xs sm:text-sm text-charcoal-muted font-sans">
             Reflections from clients who value botanical poetry and meticulous craft.
