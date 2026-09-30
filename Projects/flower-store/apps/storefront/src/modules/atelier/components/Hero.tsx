@@ -179,14 +179,15 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Curation Note & Controls */}
-        <div className="pt-4 border-t border-cream/15 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          {/* Stem / Curation Note */}
-          <p className="flex items-center gap-2 text-[11px] text-cream/75 tracking-wider font-light">
-            <span className="text-petal-veil">✦</span>
-            <span className="text-cream/60">Curation:</span>
+        {/* Bottom Bar: Seamless Floating Luxury Curation & Controls (No full-width dividing line) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 py-1">
+          {/* Curation Note in floating luxury badge */}
+          <div className="flex items-center gap-2 text-[11px] sm:text-[11.5px] tracking-wider font-light bg-charcoal/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+            <span className="text-petal-veil text-xs">✦</span>
+            <span className="text-coral-blossom/80 uppercase text-[9.5px] tracking-[0.16em] font-semibold">Curation</span>
+            <span className="text-white/30">|</span>
             <span className="text-cream font-medium">{campaign.stemNote}</span>
-          </p>
+          </div>
 
           {/* Slide Navigation Controls */}
           <div className="flex items-center gap-4 sm:gap-6">
@@ -198,7 +199,7 @@ export const Hero: React.FC = () => {
                   onClick={() => goTo(i)}
                   className={`transition-all duration-300 rounded-full ${
                     i === currentSlide
-                      ? "w-7 h-1.5 bg-petal-veil"
+                      ? "w-7 h-1.5 bg-petal-veil shadow-sm shadow-petal-veil/50"
                       : "w-2 h-1.5 bg-cream/30 hover:bg-cream/60"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
@@ -212,18 +213,18 @@ export const Hero: React.FC = () => {
               <span className="text-cream/40 text-xs ml-1">/ 0{CAMPAIGNS.length}</span>
             </span>
 
-            {/* Arrow Buttons */}
+            {/* Circular Glassmorphic Arrow Buttons */}
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handlePrev}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/25 hover:border-cream bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm text-cream rounded-xs transition-all duration-200"
+                className="w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center border border-white/20 hover:border-white/50 bg-white/10 hover:bg-white/25 backdrop-blur-md text-cream rounded-full transition-all duration-200 hover:scale-105 active:scale-95 shadow-md"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/25 hover:border-cream bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm text-cream rounded-xs transition-all duration-200"
+                className="w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center border border-white/20 hover:border-white/50 bg-white/10 hover:bg-white/25 backdrop-blur-md text-cream rounded-full transition-all duration-200 hover:scale-105 active:scale-95 shadow-md"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-4 h-4" />
