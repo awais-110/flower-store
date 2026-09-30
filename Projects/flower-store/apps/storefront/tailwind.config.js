@@ -131,15 +131,19 @@ module.exports = {
           "Georgia",
           "serif",
         ],
+        cormorant: [
+          "'Cormorant Garamond'",
+          "Georgia",
+          "serif",
+        ],
         editorial: [
           "'Cormorant Garamond'",
-          "'Playfair Display'",
           "Georgia",
           "serif",
         ],
         serif: [
-          "'Playfair Display'",
           "'Cormorant Garamond'",
+          "'Playfair Display'",
           "Georgia",
           "serif",
         ],

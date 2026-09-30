@@ -150,8 +150,8 @@ export const Hero: React.FC = () => {
             <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
           </div>
 
-          {/* Classic British Heritage Luxury Serif Headline */}
-          <h1 className="font-heritage text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal text-cream leading-[1.1] sm:leading-[1.14] tracking-[-0.01em] whitespace-pre-line drop-shadow-2xl max-w-3xl mx-auto">
+          {/* High-Fashion Italian Vogue Luxury Editorial Headline (Cormorant Garamond) */}
+          <h1 className="font-cormorant text-5xl sm:text-6xl md:text-7xl lg:text-[82px] font-light text-cream leading-[1.08] sm:leading-[1.1] tracking-[-0.015em] whitespace-pre-line drop-shadow-2xl max-w-4xl mx-auto">
             {campaign.headline}
           </h1>
 
