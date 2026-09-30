@@ -136,12 +136,19 @@ module.exports = {
           "serif",
         ],
         sans: [
-          "'Plus Jakarta Sans'",
-          "Inter",
+          "'Saira'",
+          "sans-serif",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
           "Roboto",
+        ],
+        saira: [
+          "'Saira'",
+          "sans-serif",
+        ],
+        changa: [
+          "'Changa'",
           "sans-serif",
         ],
       },
