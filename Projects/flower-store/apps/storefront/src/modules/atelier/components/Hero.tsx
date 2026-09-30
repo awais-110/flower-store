@@ -139,29 +139,28 @@ export const Hero: React.FC = () => {
       {/* Hero Content Container — Classic British Heritage Luxury Editorial */}
       <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8">
         
-        {/* Center Focal: Main Headlines & CTAs */}
-        <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 my-auto px-2">
-          {/* Polished Eyebrow with refined gradient dividers */}
-          <div className="flex items-center justify-center gap-3 sm:gap-4">
-            <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
+        {/* Left Focal: Main Headlines & CTAs */}
+        <div className="max-w-3xl text-left space-y-4 sm:space-y-6 my-auto px-2">
+          {/* Eyebrow — left aligned */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <span className="font-saira text-[10.5px] sm:text-[12px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
               {campaign.eyebrow}
             </span>
-            <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
+            <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-coral-blossom/70 to-transparent inline-block flex-shrink-0" />
           </div>
 
           {/* High-Fashion Italian Vogue Luxury Editorial Headline (Cormorant Garamond) */}
-          <h1 className="font-cormorant text-5xl sm:text-6xl md:text-7xl lg:text-[82px] font-light text-cream leading-[1.08] sm:leading-[1.1] tracking-[-0.015em] whitespace-pre-line drop-shadow-2xl max-w-4xl mx-auto">
+          <h1 className="font-cormorant text-5xl sm:text-6xl md:text-7xl lg:text-[82px] font-light text-cream leading-[1.08] sm:leading-[1.1] tracking-[-0.015em] whitespace-pre-line drop-shadow-2xl">
             {campaign.headline}
           </h1>
 
           {/* Subheadline in Saira */}
-          <p className="font-saira text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
+          <p className="font-saira text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl leading-relaxed font-light drop-shadow-md">
             {campaign.subheadline}
           </p>
 
           {/* Action CTAs */}
-          <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-start gap-3 sm:gap-4">
             <LocalizedClientLink
               href={campaign.ctaHref}
               className="font-saira group inline-flex items-center gap-2.5 bg-cream text-charcoal hover:bg-petal-veil hover:text-white px-8 sm:px-10 py-3.5 sm:py-4 text-[11.5px] sm:text-[12px] uppercase tracking-[0.18em] font-bold rounded-xs transition-all duration-300 shadow-2xl hover:shadow-petal-veil/25 hover:-translate-y-0.5"
