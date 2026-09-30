@@ -33,14 +33,20 @@ export function NavClient({
 
   return (
     <div className="relative w-full">
+      {/* Hanging Center Curved Medallion (Drops down from nav onto the hero banner) */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 z-30 pointer-events-auto">
+        <div className="bg-[#FAF7F2] border-b border-x border-sage/25 shadow-lg rounded-b-[2.2rem] sm:rounded-b-[2.6rem] px-5 sm:px-8 pt-1.5 pb-3.5 flex flex-col items-center justify-center transition-all duration-300 hover:shadow-xl hover:border-gold/40">
+          {centerSlot}
+        </div>
+      </div>
+
       {/* Mobile view (< lg) */}
-      <div className="flex lg:hidden items-center justify-between min-h-[72px] py-2 gap-2">
+      <div className="flex lg:hidden items-center justify-between h-[62px] sm:h-[66px] py-1 gap-2">
         <div className="flex items-center justify-start w-12 flex-shrink-0">
           {mobileMenuSlot}
         </div>
-        <div className="flex-1 flex items-center justify-center">
-          {centerSlot}
-        </div>
+        {/* Center space placeholder so hamburger and cart don't overlap the hanging medallion */}
+        <div className="flex-1 w-32" aria-hidden="true" />
         <div className="flex items-center justify-end gap-2 flex-shrink-0">
           <button
             onClick={openSearch}
@@ -53,8 +59,8 @@ export function NavClient({
         </div>
       </div>
 
-      {/* Desktop view (>= lg): Perfectly balanced equal layout matching user reference */}
-      <div className="hidden lg:flex items-center justify-between w-full min-h-[84px] py-2">
+      {/* Desktop view (>= lg): Balanced equal nav bar with center hanging medallion */}
+      <div className="hidden lg:flex items-center justify-between w-full h-[64px] sm:h-[68px]">
         
         {/* Left Side: Shop, Collections, Bespoke */}
         <nav className="flex-1 flex items-center justify-start gap-1 sm:gap-2 xl:gap-3">
@@ -103,14 +109,8 @@ export function NavClient({
           </LocalizedClientLink>
         </nav>
 
-        {/* Center: Flanking Horizontal Rules & Camelia Logo */}
-        <div className="flex-shrink-0 flex items-center justify-center px-4 xl:px-8">
-          <span className="h-[1px] w-10 sm:w-16 md:w-20 xl:w-28 bg-charcoal/25 flex-shrink-0" />
-          <div className="mx-4 sm:mx-6 flex items-center justify-center">
-            {centerSlot}
-          </div>
-          <span className="h-[1px] w-10 sm:w-16 md:w-20 xl:w-28 bg-charcoal/25 flex-shrink-0" />
-        </div>
+        {/* Center Space Reservation (Ensures left & right links never collide with the hanging medallion) */}
+        <div className="w-52 sm:w-60 lg:w-68 flex-shrink-0 flex items-center justify-center" aria-hidden="true" />
 
         {/* Right Side: Occasions, Journal, Search, Account, Cart */}
         <div className="flex-1 flex items-center justify-end gap-1 sm:gap-2 xl:gap-3">
