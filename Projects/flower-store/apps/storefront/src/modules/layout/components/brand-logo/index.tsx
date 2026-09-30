@@ -10,6 +10,8 @@ const PETAL_COLORS = [
 ]
 const LEAF_COLORS = ["#7C8F5E", "#5E7A47", "#8FA86A"]
 
+const SCROLL_THRESHOLD = 72
+
 interface BrandLogoProps {
   className?: string
   title?: string
@@ -24,7 +26,6 @@ export function BrandLogo({
   const router = useRouter()
   const pillRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const flowerRef = useRef<HTMLDivElement>(null)
 
   const isDragging = useRef(false)
   const startX = useRef(0)
@@ -35,6 +36,8 @@ export function BrandLogo({
   const [isBloomed, setIsBloomed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const [hasMounted, setHasMounted] = useState(false)
+  // true when user has scrolled past the hero
+  const [isCompact, setIsCompact] = useState(false)
 
   // Entrance animation on mount
   useEffect(() => {
@@ -42,7 +45,17 @@ export function BrandLogo({
     return () => clearTimeout(t)
   }, [])
 
-  // Bloom burst petal explosion animation
+  // Scroll listener — compact mode when past threshold
+  useEffect(() => {
+    const onScroll = () => {
+      setIsCompact(window.scrollY > SCROLL_THRESHOLD)
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  // Bloom burst petal explosion
   const triggerBurst = useCallback(() => {
     setIsBloomed(true)
     setTimeout(() => setIsBloomed(false), 400)
@@ -86,31 +99,28 @@ export function BrandLogo({
     }
   }, [])
 
-  // Drag physics transform
+  // Drag physics — only active in hanging mode
   const setTransform = useCallback((dx: number, dy: number) => {
     const pill = pillRef.current
     if (!pill) return
-
     const clampedY = Math.max(0, Math.min(dy, 100))
     const clampedX = Math.max(-45, Math.min(dx, 45))
     const stretch = 1 + clampedY / 220
     const squeeze = 1 - clampedY / 600
     const rotate = clampedX / 5.5
     const shadowOpacity = 0.22 + (clampedY / 100) * 0.22
-
     pill.style.transform = `translate(${clampedX}px, ${clampedY}px) rotate(${rotate}deg) scale(${squeeze}, ${stretch})`
     pill.style.boxShadow = `0 ${12 + clampedY * 0.3}px ${36 + clampedY * 0.5}px -4px rgba(120,60,40,${shadowOpacity})`
     dragDist.current = Math.sqrt(dx * dx + dy * dy)
   }, [])
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0) return
+    if (e.button !== 0 || isCompact) return
     isDragging.current = true
     hasMoved.current = false
     dragDist.current = 0
     startX.current = e.clientX
     startY.current = e.clientY
-
     const pill = pillRef.current
     if (pill) {
       pill.style.transition = "transform .05s linear"
@@ -129,7 +139,6 @@ export function BrandLogo({
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging.current) return
     isDragging.current = false
-
     const pill = pillRef.current
     if (pill) {
       pill.style.transition = "transform .7s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease"
@@ -137,109 +146,173 @@ export function BrandLogo({
       pill.style.boxShadow = ""
       try { pill.releasePointerCapture(e.pointerId) } catch {}
     }
-
-    if (hasMoved.current && dragDist.current > 12) {
-      triggerBurst()
-    } else {
-      triggerBurst()
+    triggerBurst()
+    if (!hasMoved.current || dragDist.current < 12) {
       if (window.location.pathname !== "/" && window.location.pathname !== "") {
         setTimeout(() => router.push("/"), 350)
       }
     }
   }
 
+  // ─── Derived style values ────────────────────────────────────────────────
+  const pillBase = isCompact
+    ? {
+        borderRadius: "12px",
+        padding: "6px 20px 6px",
+        flexDirection: "row" as const,
+        gap: "8px",
+        border: "1px solid #C9A07A",
+        background: "linear-gradient(135deg, #FDF6EE 0%, #F5E4D5 100%)",
+        boxShadow: isHovered
+          ? "0 0 0 2px rgba(216,152,110,0.4), 0 6px 20px -4px rgba(120,60,30,0.22)"
+          : "0 4px 18px -4px rgba(120,60,30,0.18)",
+        cursor: "pointer",
+      }
+    : {
+        borderRadius: "0 0 30px 30px",
+        padding: "8px 28px 20px",
+        flexDirection: "column" as const,
+        gap: "0px",
+        borderTop: "none",
+        borderLeft: "1px solid #C9A07A",
+        borderRight: "1px solid #C9A07A",
+        borderBottom: "1px solid #C9A07A",
+        background: "linear-gradient(168deg, #FDF6EE 0%, #F5E4D5 50%, #EDD5C0 100%)",
+        boxShadow: isHovered
+          ? "0 0 0 3px rgba(216,152,110,0.35), 0 14px 40px -4px rgba(120,60,30,0.28)"
+          : "0 10px 36px -4px rgba(120,60,30,0.22)",
+        cursor: "grab",
+      }
+
+  // Wrapper transform: compact → slide up to be centered in nav
+  const wrapperTransform = isCompact
+    ? "translateY(calc(-100% + 52px))"
+    : hasMounted
+    ? "translateY(0)"
+    : "translateY(-120%) scale(0.85)"
+
   return (
     <div
       ref={containerRef}
       className={`relative flex items-start justify-center ${className}`}
     >
-      {/* Elastic Hanging Logo Pill */}
+      {/* Position wrapper — handles scroll retract */}
       <div
-        ref={pillRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={[
-          "relative rounded-b-[30px] px-7 sm:px-9 pt-2 pb-5",
-          "flex flex-col items-center justify-center",
-          "cursor-grab active:cursor-grabbing select-none",
-          "border-b border-x",
-          "will-change-transform touch-none z-40",
-          // entrance animation
-          hasMounted ? "logo-pill-entered" : "logo-pill-entering",
-          // hover glow
-          isHovered ? "logo-pill-glow" : "",
-        ].join(" ")}
         style={{
-          transform: hasMounted ? "translate(0,0) rotate(0deg) scale(1,1)" : "translateY(-110%) scale(0.85)",
-          background: "linear-gradient(168deg, #FDF6EE 0%, #F5E4D5 50%, #EDD5C0 100%)",
-          borderColor: "#C9A07A",
-          boxShadow: isHovered
-            ? "0 0 0 3px rgba(216,152,110,0.35), 0 14px 40px -4px rgba(120,60,30,0.28)"
-            : "0 10px 36px -4px rgba(120,60,30,0.22)",
-          transition: hasMounted
-            ? "transform .7s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background .4s ease"
-            : "none",
+          transform: wrapperTransform,
+          transition: "transform .55s cubic-bezier(.34,1.3,.64,1)",
+          willChange: "transform",
         }}
-        title="Pull me down or click to bloom!"
       >
-        {/* Subtle shimmer line at top edge */}
+        {/* Logo pill — handles drag */}
         <div
-          className="absolute top-0 left-4 right-4 h-px rounded-full"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(255,240,220,0.9), transparent)" }}
-          aria-hidden="true"
-        />
-
-        {/* Watercolor Camellia Blossom — rotates gently on hover */}
-        <div
-          ref={flowerRef}
-          className="relative mb-0.5"
-          style={{
-            transition: "transform .5s cubic-bezier(.34,1.3,.64,1), filter .4s ease",
-            transform: isBloomed
-              ? "scale(1.18) translateY(-3px) rotate(8deg)"
-              : isHovered
-              ? "scale(1.08) translateY(-2px) rotate(-6deg)"
-              : "scale(1) translateY(0) rotate(0deg)",
-            filter: isBloomed
-              ? "drop-shadow(0 4px 10px rgba(216,130,80,0.55))"
-              : isHovered
-              ? "drop-shadow(0 3px 8px rgba(180,100,60,0.35))"
-              : "drop-shadow(0 2px 4px rgba(0,0,0,0.12))",
+          ref={pillRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            if (isCompact) {
+              triggerBurst()
+              if (window.location.pathname !== "/" && window.location.pathname !== "") {
+                setTimeout(() => router.push("/"), 300)
+              }
+            }
           }}
-        >
-          <Image
-            src="/images/camelia-blossom.png"
-            alt="Camelia blossom"
-            width={58}
-            height={58}
-            className="object-contain"
-            priority
-          />
-        </div>
-
-        {/* Wordmark */}
-        <div
+          className="relative flex items-center justify-center select-none will-change-transform touch-none z-40"
           style={{
-            fontFamily: "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
-            color: isHovered ? "#5C2D18" : "#3D2418",
-            transition: "color .3s ease, letter-spacing .3s ease",
-            letterSpacing: isHovered ? "0.01em" : "0em",
+            ...pillBase,
+            transition: [
+              "border-radius .55s cubic-bezier(.34,1.3,.64,1)",
+              "padding .55s cubic-bezier(.34,1.3,.64,1)",
+              "box-shadow .35s ease",
+              "background .4s ease",
+              "gap .4s ease",
+              "transform .7s cubic-bezier(.34,1.56,.64,1)",
+            ].join(", "),
           }}
-          className="font-geraldine font-display text-[34px] sm:text-[40px] font-normal leading-none tracking-normal select-none pointer-events-none -mt-1"
+          title={isCompact ? "Click to go home" : "Pull me down or click to bloom!"}
         >
-          {title}
-        </div>
+          {/* Shimmer top line — only in hanging mode */}
+          {!isCompact && (
+            <div
+              className="absolute top-0 left-4 right-4 h-px rounded-full"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(255,240,220,0.9), transparent)" }}
+              aria-hidden="true"
+            />
+          )}
 
-        {/* Optional subtitle */}
-        {subtitle && (
-          <div className="text-[8px] sm:text-[9px] tracking-[0.22em] text-[#9B7B60] font-semibold mt-1 uppercase select-none pointer-events-none">
-            {subtitle}
+          {/* Camellia blossom */}
+          <div
+            style={{
+              transition: "transform .5s cubic-bezier(.34,1.3,.64,1), filter .4s ease, width .45s ease, height .45s ease",
+              transform: isBloomed
+                ? "scale(1.18) translateY(-3px) rotate(8deg)"
+                : isHovered
+                ? "scale(1.08) translateY(-2px) rotate(-5deg)"
+                : "scale(1) translateY(0) rotate(0deg)",
+              filter: isBloomed
+                ? "drop-shadow(0 4px 10px rgba(216,130,80,0.55))"
+                : isHovered
+                ? "drop-shadow(0 3px 8px rgba(180,100,60,0.35))"
+                : "drop-shadow(0 2px 4px rgba(0,0,0,0.12))",
+              flexShrink: 0,
+              marginBottom: isCompact ? 0 : "2px",
+            }}
+          >
+            <Image
+              src="/images/camelia-blossom.png"
+              alt="Camelia blossom"
+              width={isCompact ? 32 : 58}
+              height={isCompact ? 32 : 58}
+              className="object-contain block"
+              style={{
+                transition: "width .45s cubic-bezier(.34,1.3,.64,1), height .45s cubic-bezier(.34,1.3,.64,1)",
+              }}
+              priority
+            />
           </div>
-        )}
+
+          {/* Wordmark */}
+          <div
+            style={{
+              fontFamily: "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
+              color: isHovered ? "#5C2D18" : "#3D2418",
+              fontSize: isCompact ? "26px" : "34px",
+              transition: "color .3s ease, font-size .45s cubic-bezier(.34,1.3,.64,1), letter-spacing .3s ease",
+              letterSpacing: isHovered && !isCompact ? "0.01em" : "0em",
+              lineHeight: 1,
+              userSelect: "none",
+              pointerEvents: "none",
+              marginTop: isCompact ? 0 : "-4px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {title}
+          </div>
+
+          {/* Subtitle — only in hanging mode */}
+          {subtitle && !isCompact && (
+            <div
+              style={{
+                fontSize: "8px",
+                letterSpacing: "0.22em",
+                color: "#9B7B60",
+                fontWeight: 600,
+                marginTop: "4px",
+                textTransform: "uppercase",
+                userSelect: "none",
+                pointerEvents: "none",
+                transition: "opacity .3s ease",
+                opacity: isCompact ? 0 : 1,
+              }}
+            >
+              {subtitle}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
