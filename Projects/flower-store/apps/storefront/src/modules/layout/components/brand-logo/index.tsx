@@ -168,19 +168,16 @@ export function BrandLogo({
         cursor: "pointer",
       }
     : {
-        // Hanging pill
-        borderRadius: "0 0 30px 30px",
+        // Hanging pill — no border, clean shadow only
+        borderRadius: "0 0 28px 28px",
         padding: "8px 28px 20px",
         flexDirection: "column" as const,
         gap: "0px",
-        borderTop: "none",
-        borderLeft: "1px solid #C9A07A",
-        borderRight: "1px solid #C9A07A",
-        borderBottom: "1px solid #C9A07A",
-        background: "linear-gradient(168deg, #FDF6EE 0%, #F5E4D5 50%, #EDD5C0 100%)",
+        border: "none",
+        background: "linear-gradient(168deg, #FDF6EE 0%, #F3E0CE 60%, #EDD5C0 100%)",
         boxShadow: isHovered
-          ? "0 0 0 3px rgba(216,152,110,0.35), 0 14px 40px -4px rgba(120,60,30,0.28)"
-          : "0 10px 36px -4px rgba(120,60,30,0.22)",
+          ? "0 16px 44px -4px rgba(80,40,20,0.26)"
+          : "0 10px 36px -4px rgba(80,40,20,0.18)",
         cursor: "grab",
       }
 
@@ -233,14 +230,7 @@ export function BrandLogo({
           }}
           title={isCompact ? "Click to go home" : "Pull me down or click to bloom!"}
         >
-          {/* Shimmer top line — only in hanging mode */}
-          {!isCompact && (
-            <div
-              className="absolute top-0 left-4 right-4 h-px rounded-full"
-              style={{ background: "linear-gradient(90deg, transparent, rgba(255,240,220,0.9), transparent)" }}
-              aria-hidden="true"
-            />
-          )}
+
 
           {/* Camellia blossom */}
           <div
