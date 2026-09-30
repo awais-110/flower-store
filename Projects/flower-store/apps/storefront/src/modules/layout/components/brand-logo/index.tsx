@@ -47,11 +47,11 @@ export function BrandLogo({
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const sy = window.scrollY
-          // Trigger compact mode when scrolling down past 55px
-          // Revert to hanging pill only when scrolled back up above 25px
-          if (sy > 55) {
+          // Trigger compact mode when scrolling down past 45px
+          // Revert to hanging pill only when scrolled back up above 15px
+          if (sy > 45) {
             setIsScrolled(true)
-          } else if (sy < 25) {
+          } else if (sy < 15) {
             setIsScrolled(false)
           }
           ticking = false
@@ -161,8 +161,8 @@ export function BrandLogo({
     }
   }
 
-  // ── Shared flower blossom styling ────────────────────────────────────
-  const flowerStyle: React.CSSProperties = {
+  // ── Flower blossom styling: hanging vs compact ───────────────────────
+  const hangingFlowerStyle: React.CSSProperties = {
     transition: "transform .5s cubic-bezier(.34,1.3,.64,1), filter .4s ease",
     transform: isBloomed
       ? "scale(1.18) translateY(-3px) rotate(8deg)"
@@ -170,9 +170,23 @@ export function BrandLogo({
       ? "scale(1.08) translateY(-2px) rotate(-5deg)"
       : "scale(1) translateY(0) rotate(0deg)",
     filter: isBloomed
-      ? "drop-shadow(0 4px 10px rgba(216,130,80,0.55))"
+      ? "drop-shadow(0 4px 16px rgba(233,210,216,0.9)) drop-shadow(0 2px 6px rgba(0,0,0,0.3))"
       : isHovered
-      ? "drop-shadow(0 3px 8px rgba(180,100,60,0.35))"
+      ? "drop-shadow(0 3px 12px rgba(255,255,255,0.65)) drop-shadow(0 2px 5px rgba(0,0,0,0.2))"
+      : "drop-shadow(0 2px 8px rgba(255,255,255,0.45)) drop-shadow(0 2px 4px rgba(0,0,0,0.18))",
+  }
+
+  const compactFlowerStyle: React.CSSProperties = {
+    transition: "transform .5s cubic-bezier(.34,1.3,.64,1), filter .4s ease",
+    transform: isBloomed
+      ? "scale(1.18) translateY(-3px) rotate(8deg)"
+      : isHovered
+      ? "scale(1.08) translateY(-2px) rotate(-5deg)"
+      : "scale(1) translateY(0) rotate(0deg)",
+    filter: isBloomed
+      ? "drop-shadow(0 4px 12px rgba(218,136,138,0.55))"
+      : isHovered
+      ? "drop-shadow(0 3px 8px rgba(93,111,125,0.3))"
       : "drop-shadow(0 2px 4px rgba(0,0,0,0.12))",
   }
 
@@ -209,18 +223,19 @@ export function BrandLogo({
           style={{
             borderRadius: "0 0 28px 28px",
             padding: "8px 28px 20px",
-            border: "none",
+            border: "1px solid rgba(233, 210, 216, 0.32)",
+            borderTop: "none",
             background:
-              "linear-gradient(168deg, #6B7E8C 0%, #5D6F7D 50%, #4D5D6B 100%)",
+              "linear-gradient(172deg, #687B8A 0%, #5D6F7D 50%, #4A5966 100%)",
             boxShadow: isHovered
-              ? "0 16px 44px -4px rgba(45,55,64,0.36)"
-              : "0 10px 36px -4px rgba(45,55,64,0.26)",
+              ? "0 20px 48px -4px rgba(0,0,0,0.48), 0 0 0 1px rgba(233,210,216,0.3)"
+              : "0 12px 38px -4px rgba(0,0,0,0.36), 0 0 0 1px rgba(233,210,216,0.18)",
             cursor: "grab",
             willChange: "transform",
           }}
           title="Pull me down or click to bloom!"
         >
-          <div style={flowerStyle}>
+          <div style={hangingFlowerStyle}>
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
@@ -238,10 +253,11 @@ export function BrandLogo({
               fontSize: "44px",
               lineHeight: 1,
               marginTop: "-4px",
+              textShadow: "0 1px 3px rgba(0,0,0,0.35), 0 0 12px rgba(255,255,255,0.15)",
               userSelect: "none",
               pointerEvents: "none",
               whiteSpace: "nowrap",
-              transition: "color .3s ease",
+              transition: "color .3s ease, text-shadow .3s ease",
             }}
           >
             {title}
@@ -293,7 +309,7 @@ export function BrandLogo({
         title="Click to go home"
       >
         <div className="flex flex-row items-center gap-2.5 select-none whitespace-nowrap">
-          <div style={flowerStyle} className="flex-shrink-0">
+          <div style={compactFlowerStyle} className="flex-shrink-0">
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"

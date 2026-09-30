@@ -52,7 +52,7 @@ export const AnnouncementBar: React.FC = () => {
   // Hide smoothly on scroll down, reveal on top
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      setIsScrolled(window.scrollY > 45)
     }
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
