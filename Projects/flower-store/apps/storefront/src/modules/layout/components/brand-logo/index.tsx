@@ -112,7 +112,7 @@ export function BrandLogo({
     const rotate = cx / 5.5
     const shadowO = 0.18 + (cy / 100) * 0.22
     pill.style.transform = `translate(${cx}px, ${cy}px) rotate(${rotate}deg) scale(${squeeze}, ${stretch})`
-    pill.style.boxShadow = `0 ${12 + cy * 0.3}px ${36 + cy * 0.5}px -4px rgba(80,40,20,${shadowO})`
+    pill.style.boxShadow = `0 ${12 + cy * 0.3}px ${36 + cy * 0.5}px -4px rgba(45,55,64,${shadowO})`
     dragDist.current = Math.sqrt(dx * dx + dy * dy)
   }, [])
 
@@ -211,10 +211,10 @@ export function BrandLogo({
             padding: "8px 28px 20px",
             border: "none",
             background:
-              "linear-gradient(168deg, #FAF7F4 0%, #F5E9EC 50%, #E9D2D8 100%)",
+              "linear-gradient(168deg, #6B7E8C 0%, #5D6F7D 50%, #4D5D6B 100%)",
             boxShadow: isHovered
-              ? "0 16px 44px -4px rgba(93,111,125,0.25)"
-              : "0 10px 36px -4px rgba(93,111,125,0.18)",
+              ? "0 16px 44px -4px rgba(45,55,64,0.36)"
+              : "0 10px 36px -4px rgba(45,55,64,0.26)",
             cursor: "grab",
             willChange: "transform",
           }}
@@ -226,7 +226,7 @@ export function BrandLogo({
               alt="Camelia blossom"
               width={84}
               height={58}
-              className="w-[78px] h-auto object-contain block"
+              className="w-[78px] h-auto object-contain block drop-shadow-md"
               priority
             />
           </div>
@@ -234,7 +234,7 @@ export function BrandLogo({
             style={{
               fontFamily:
                 "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
-              color: isHovered ? "#5D6F7D" : "#2D3740",
+              color: isHovered ? "#E9D2D8" : "#FAF7F4",
               fontSize: "44px",
               lineHeight: 1,
               marginTop: "-4px",
@@ -251,7 +251,7 @@ export function BrandLogo({
               style={{
                 fontSize: "8px",
                 letterSpacing: "0.22em",
-                color: "#7897B3",
+                color: "#E9D2D8",
                 fontWeight: 600,
                 marginTop: "4px",
                 textTransform: "uppercase",
