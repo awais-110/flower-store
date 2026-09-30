@@ -157,18 +157,18 @@ export function BrandLogo({
   // ─── Derived style values ────────────────────────────────────────────────
   const pillBase = isCompact
     ? {
-        borderRadius: "12px",
-        padding: "6px 20px 6px",
+        // Compact: fully invisible — blends into the nav
+        borderRadius: "0",
+        padding: "0 12px",
         flexDirection: "row" as const,
         gap: "8px",
-        border: "1px solid #C9A07A",
-        background: "linear-gradient(135deg, #FDF6EE 0%, #F5E4D5 100%)",
-        boxShadow: isHovered
-          ? "0 0 0 2px rgba(216,152,110,0.4), 0 6px 20px -4px rgba(120,60,30,0.22)"
-          : "0 4px 18px -4px rgba(120,60,30,0.18)",
+        border: "none",
+        background: "transparent",
+        boxShadow: "none",
         cursor: "pointer",
       }
     : {
+        // Hanging pill
         borderRadius: "0 0 30px 30px",
         padding: "8px 28px 20px",
         flexDirection: "column" as const,
@@ -225,11 +225,9 @@ export function BrandLogo({
           style={{
             ...pillBase,
             transition: [
-              "border-radius .55s cubic-bezier(.34,1.3,.64,1)",
-              "padding .55s cubic-bezier(.34,1.3,.64,1)",
               "box-shadow .35s ease",
-              "background .4s ease",
-              "gap .4s ease",
+              "background .45s ease",
+              "opacity .35s ease",
               "transform .7s cubic-bezier(.34,1.56,.64,1)",
             ].join(", "),
           }}
@@ -279,7 +277,7 @@ export function BrandLogo({
           <div
             style={{
               fontFamily: "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
-              color: isHovered ? "#5C2D18" : "#3D2418",
+              color: isHovered && !isCompact ? "#5C2D18" : "#3D2418",
               fontSize: isCompact ? "26px" : "34px",
               transition: "color .3s ease, font-size .45s cubic-bezier(.34,1.3,.64,1), letter-spacing .3s ease",
               letterSpacing: isHovered && !isCompact ? "0.01em" : "0em",
