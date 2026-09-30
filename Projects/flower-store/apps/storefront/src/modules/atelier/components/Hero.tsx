@@ -136,7 +136,7 @@ export const Hero: React.FC = () => {
         )
       })}
 
-      {/* Hero Content Container — Clean Centered Official Luxury */}
+      {/* Hero Content Container — Classic British Heritage Luxury Editorial */}
       <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8">
         
         {/* Center Focal: Main Headlines & CTAs */}
@@ -144,18 +144,18 @@ export const Hero: React.FC = () => {
           {/* Polished Eyebrow with refined gradient dividers */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
-            <span className="font-saira text-[11px] sm:text-[12.5px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
+            <span className="font-saira text-[10.5px] sm:text-[12px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
               {campaign.eyebrow}
             </span>
             <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
           </div>
 
-          {/* Clean Decent Official Luxury Headline in Saira */}
-          <h1 className="font-saira text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-semibold text-cream leading-[1.08] sm:leading-[1.1] tracking-[-0.025em] whitespace-pre-line drop-shadow-2xl max-w-3xl mx-auto">
+          {/* Classic British Heritage Luxury Serif Headline */}
+          <h1 className="font-heritage text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal text-cream leading-[1.1] sm:leading-[1.14] tracking-[-0.01em] whitespace-pre-line drop-shadow-2xl max-w-3xl mx-auto">
             {campaign.headline}
           </h1>
 
-          {/* Subheadline in Saira Light */}
+          {/* Subheadline in Saira */}
           <p className="font-saira text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
             {campaign.subheadline}
           </p>
