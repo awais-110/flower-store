@@ -88,6 +88,13 @@ module.exports = {
         "3xl": "2rem",
       },
       fontFamily: {
+        display: [
+          "var(--font-geraldine)",
+          "'Geraldine'",
+          "'Cormorant Garamond'",
+          "Georgia",
+          "serif",
+        ],
         editorial: [
           "'Cormorant Garamond'",
           "Georgia",

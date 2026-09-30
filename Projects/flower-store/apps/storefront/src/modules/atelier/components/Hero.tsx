@@ -22,13 +22,13 @@ interface HeroCampaign {
 const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-01",
-    eyebrow: "Atelier Fleur · Signature Collection",
-    headline: "Lahore ke Gulab,\nDuniya ki Zabaan",
+    eyebrow: "Maison Fleur · Signature Collection",
+    headline: "Roses of Lahore,\nSpoken to the World",
     subheadline:
-      "Pakistan ke sabse nadir garden roses, French ranunculus aur Himalayan wildflowers — ek saath, ek arrangement mein.",
+      "Pakistan's rarest garden roses, French ranunculus and Himalayan wildflowers — composed into a single, breathtaking arrangement.",
     image:
       "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=2000&q=85",
-    ctaText: "Collection Dekhein",
+    ctaText: "Explore Collection",
     ctaHref: "/store",
     secondaryCtaText: "Bespoke Bouquet",
     secondaryCtaHref: "/custom-bouquet",
@@ -37,47 +37,47 @@ const CAMPAIGNS: HeroCampaign[] = [
   },
   {
     id: "camp-02",
-    eyebrow: "Gifting · Shaadi & Eid",
-    headline: "Mohabbat ko\nPhoolon mein Badlein",
+    eyebrow: "Gifting · Weddings & Eid",
+    headline: "Express Love\nThrough Flowers",
     subheadline:
-      "Haath se likhi calligraphy card aur wax-seal ke saath har arrangement Pakistan ke kisi bhi sheher mein pahuncha dein.",
+      "Hand-penned calligraphy cards and a wax seal accompany every arrangement — delivered to any city across Pakistan.",
     image:
       "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=2000&q=85",
-    ctaText: "Gift Karo",
+    ctaText: "Send as a Gift",
     ctaHref: "/store",
-    secondaryCtaText: "Concierge Se Baat Karein",
+    secondaryCtaText: "Speak with Concierge",
     secondaryCtaHref: "/#concierge",
     stemNote: "Mogra · Sweet Pea · Italian Ranunculus",
   },
   {
     id: "camp-03",
     eyebrow: "Celebrations · Milestones",
-    headline: "Jashn Ka Waqt\nPhoolon Ka Saath",
+    headline: "Celebrate Every\nMoment in Bloom",
     subheadline:
-      "Sunheri mimosa, apricot garden blooms aur safed chambeli — ek yādgār curation har khas lamhe ke liye.",
+      "Golden mimosa, apricot garden blooms and white jasmine — a timeless curation for every milestone that deserves remembrance.",
     image:
       "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=2000&q=85",
-    ctaText: "Celebrations Shop Karein",
+    ctaText: "Shop Celebrations",
     ctaHref: "/store",
-    secondaryCtaText: "WhatsApp Karein",
+    secondaryCtaText: "WhatsApp Us",
     secondaryCtaHref: "/#concierge",
-    stemNote: "Islamabad · Chameli & Golden Mimosa",
+    stemNote: "Islamabad · Jasmine & Golden Mimosa",
   },
   {
     id: "camp-04",
     eyebrow: "Living Sculptures · Orchids",
-    headline: "Khamoshi Mein\nKhubsurati",
+    headline: "Beauty in\nGentle Silence",
     subheadline:
-      "Rare Phalaenopsis orchids, French ceramic mein rakhe hue — mahino tak taza, rooz ki sazawat ke liye.",
+      "Rare Phalaenopsis orchids, nestled in French ceramic vessels — vivid for months, elevating every corner of your home.",
     image:
       "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=2000&q=85",
     ctaText: "Orchid Collection",
     ctaHref: "/store",
-    secondaryCtaText: "Journal Parho",
+    secondaryCtaText: "Read the Journal",
     secondaryCtaHref: "/#journal",
     stemNote: "Karachi · Double-Spike Phalaenopsis",
   },
-];
+]
 
 export const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

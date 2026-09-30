@@ -2,7 +2,6 @@ import { Metadata } from "next"
 
 import { getRegion } from "@lib/data/regions"
 import { getAtelierProducts, getAtelierBestSellers } from "@lib/data/atelier"
-import { AnnouncementBar } from "@modules/atelier/components/AnnouncementBar"
 import { Hero as AtelierHero } from "@modules/atelier/components/Hero"
 import { ShopByFeeling } from "@modules/atelier/components/ShopByFeeling"
 import { SignatureCampaign } from "@modules/atelier/components/SignatureCampaign"
@@ -16,9 +15,9 @@ import { JournalGrid } from "@modules/atelier/components/JournalGrid"
 import { ConciergeSection } from "@modules/atelier/components/ConciergeSection"
 
 export const metadata: Metadata = {
-  title: "Atelier Fleur — Luxury Floral Atelier",
+  title: "Maison Fleur — Luxury Floral Atelier",
   description:
-    "Bespoke, editorial floral arrangements crafted with rare blooms and white-glove delivery.",
+    "Bespoke, editorial floral arrangements crafted with rare blooms and white-glove delivery across Pakistan.",
 }
 
 export default async function Home(props: {
@@ -42,8 +41,6 @@ export default async function Home(props: {
 
   return (
     <>
-      <AnnouncementBar />
-
       <AtelierHero />
 
       <ShopByFeeling />

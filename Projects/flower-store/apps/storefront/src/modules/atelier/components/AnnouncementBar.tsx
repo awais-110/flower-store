@@ -6,30 +6,30 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 const ANNOUNCEMENTS = [
   {
-    text: "Karachi · Lahore · Islamabad mein same-day delivery — order before 1pm",
+    text: "Same-day delivery across Karachi · Lahore · Islamabad — order before 1 pm",
     actionText: "Delivery Areas",
     href: "/#delivery",
     icon: "truck",
   },
   {
-    text: "Har arrangement ke saath complimentary handwritten card — bilkul muft",
+    text: "Every arrangement includes a complimentary handwritten calligraphy card — at no extra cost",
     actionText: "Personalize",
     href: "/custom-bouquet",
     icon: "sparkles",
   },
   {
-    text: "Naya collection aa gaya — Desi Gulab, Mogra, aur Seasonal Wildflowers",
+    text: "New arrivals — Heritage Gulab, White Mogra & Seasonal Wildflowers now in season",
     actionText: "Shop Now",
     href: "/store",
     icon: "sparkles",
   },
   {
-    text: "Eid, Shaadi, aur Corporate gifting — bespoke floral experiences",
+    text: "Eid, Wedding & Corporate gifting — bespoke floral experiences crafted to order",
     actionText: "Enquire",
     href: "/#concierge",
     icon: "sparkles",
   },
-];
+]
 
 export const AnnouncementBar: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

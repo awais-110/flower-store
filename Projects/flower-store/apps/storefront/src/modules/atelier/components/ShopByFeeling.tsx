@@ -17,42 +17,43 @@ interface FeelingTile {
 
 const FEELINGS: FeelingTile[] = [
   {
-    title: "Mohabbat",
+    title: "Romance",
     subtitle: "For Love",
-    tagline: "Romantic Lahori gulab, sweet pea tendrils aur cascading silver greens.",
+    tagline: "Romantic Lahori garden roses, trailing sweet pea tendrils and cascading silver greens.",
     count: "12 Arrangements",
     image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1000&q=85",
     href: "/store",
     accent: "#E8C5C1",
   },
   {
-    title: "Jashn",
-    subtitle: "Celebrations",
-    tagline: "Eid, Shaadi, Birthday — sunheri mimosa aur champagne ranunculus ke saath.",
+    title: "Celebrations",
+    subtitle: "Weddings & Milestones",
+    tagline: "Eid, Weddings, Birthdays — golden mimosa and champagne ranunculus in full glory.",
     count: "9 Arrangements",
     image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1000&q=85",
     href: "/store",
     accent: "#C9A84C",
   },
   {
-    title: "Shukriya",
-    subtitle: "Gratitude",
-    tagline: "Architectural cypress foliage, dewy white mogra aur sculptural branches.",
+    title: "Gratitude",
+    subtitle: "Thankfulness",
+    tagline: "Architectural cypress foliage, dewy white mogra and sculptural statement branches.",
     count: "8 Arrangements",
     image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1000&q=85",
     href: "/store",
     accent: "#73836B",
   },
   {
-    title: "Youn Hi",
-    subtitle: "Just Because",
-    tagline: "Quiet morning stems, wildflower textures aur linen wraps — without a reason.",
+    title: "Just Because",
+    subtitle: "Quiet Moments",
+    tagline: "Gentle morning stems, wildflower textures and linen wraps — no reason needed.",
     count: "14 Arrangements",
     image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=1000&q=85",
     href: "/store",
     accent: "#8E9E86",
   },
-];
+]
+
 
 export const ShopByFeeling: React.FC = () => {
   return (
@@ -61,13 +62,13 @@ export const ShopByFeeling: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-[11px] uppercase tracking-[0.35em] text-sage font-semibold">
-            Jazbaat & Iraada
+            Emotions &amp; Intentions
           </span>
           <h2 className="font-editorial text-4xl sm:text-5xl text-charcoal font-light mt-3 mb-4">
-            Kaise ka Waqt Hai?
+            How Are You Feeling?
           </h2>
           <p className="text-sm text-charcoal-muted font-sans leading-relaxed">
-            Har arrangement aik khas jazbat ke liye — phoolon se baat karo jab alfaz na ho.
+            Every arrangement is composed for a specific emotion — let flowers speak when words fall short.
           </p>
           {/* Decorative rule */}
           <div className="flex items-center gap-3 mt-6 justify-center">
@@ -122,7 +123,7 @@ export const ShopByFeeling: React.FC = () => {
 
                 <div className="pt-3 flex items-center gap-1.5">
                   <span className="text-[11px] uppercase tracking-widest font-bold text-gold group-hover:text-white transition-colors">
-                    Dekhein
+                    Explore
                   </span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-gold group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </div>
