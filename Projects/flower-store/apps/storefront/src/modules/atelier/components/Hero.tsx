@@ -8,7 +8,9 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 interface HeroCampaign {
   id: string
   eyebrow: string
-  headline: string
+  headlinePrefix: string
+  headlineScript: string
+  headlineSuffix?: string
   subheadline: string
   image: string
   ctaText: string
@@ -22,7 +24,9 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-01",
     eyebrow: "Camelia · Haute Botanical Atelier",
-    headline: "Roses of Lahore,\nSpoken to the World",
+    headlinePrefix: "Roses of Lahore,",
+    headlineScript: "Spoken",
+    headlineSuffix: "to the World",
     subheadline:
       "Pakistan's rarest morning-cut garden roses, French ranunculus, and Himalayan botanicals — composed into breathtaking living sculptures.",
     image:
@@ -36,7 +40,9 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-02",
     eyebrow: "Camelia · Bespoke Gifting & Eid",
-    headline: "Express Love\nThrough Flowers",
+    headlinePrefix: "Express",
+    headlineScript: "Love",
+    headlineSuffix: "Through Flowers",
     subheadline:
       "Hand-penned calligraphy cards and an authentic wax seal accompany every curation — delivered white-glove to any city across Pakistan.",
     image:
@@ -50,7 +56,9 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-03",
     eyebrow: "Camelia · Milestones & Banquets",
-    headline: "Celebrate Every\nMoment in Bloom",
+    headlinePrefix: "Celebrate Every",
+    headlineScript: "Moment",
+    headlineSuffix: "in Bloom",
     subheadline:
       "Golden mimosa, apricot garden blooms, and white jasmine — a timeless curation crafted for every milestone that deserves remembrance.",
     image:
@@ -64,7 +72,9 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-04",
     eyebrow: "Camelia · Sculptural Botanicals",
-    headline: "Beauty in\nGentle Silence",
+    headlinePrefix: "Beauty in",
+    headlineScript: "Gentle Silence",
+    headlineSuffix: "",
     subheadline:
       "Rare double-spike Phalaenopsis orchids nestled in handcrafted ceramic vessels — vivid for months, elevating every interior.",
     image:
@@ -125,7 +135,7 @@ export const Hero: React.FC = () => {
 
             <Image
               src={camp.image}
-              alt={camp.headline}
+              alt={camp.headlinePrefix}
               fill
               priority={index === 0}
               className={`object-cover object-center transition-transform duration-[9000ms] ease-out ${
@@ -140,7 +150,7 @@ export const Hero: React.FC = () => {
       <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8">
         
         {/* Center Focal: Main Headlines & CTAs */}
-        <div className="max-w-3xl mx-auto text-center space-y-5 sm:space-y-6 my-auto px-2">
+        <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 my-auto px-2">
           {/* Polished Eyebrow with refined gradient dividers */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
@@ -150,9 +160,20 @@ export const Hero: React.FC = () => {
             <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
           </div>
 
-          {/* Headline in High-Fashion Editorial Typography */}
-          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-cream leading-[1.08] tracking-[-0.015em] whitespace-pre-line drop-shadow-2xl">
-            {campaign.headline}
+          {/* Headline in High-Fashion Editorial Typography + Script Pairing */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] text-cream leading-[1.12] sm:leading-[1.18] tracking-[-0.015em] drop-shadow-2xl">
+            <span className="font-editorial font-light">{campaign.headlinePrefix} </span>
+            <span
+              className="font-geraldine text-4xl sm:text-6xl md:text-7xl lg:text-[84px] text-coral-blossom font-normal inline-block px-1.5 -rotate-1 drop-shadow-md align-middle"
+              style={{
+                fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif",
+              }}
+            >
+              {campaign.headlineScript}
+            </span>
+            {campaign.headlineSuffix && (
+              <span className="font-editorial font-light block sm:inline"> {campaign.headlineSuffix}</span>
+            )}
           </h1>
 
           {/* Subheadline */}
@@ -161,7 +182,7 @@ export const Hero: React.FC = () => {
           </p>
 
           {/* Action CTAs */}
-          <div className="pt-3 sm:pt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <LocalizedClientLink
               href={campaign.ctaHref}
               className="group inline-flex items-center gap-2.5 bg-cream text-charcoal hover:bg-petal-veil hover:text-white px-7 sm:px-9 py-3.5 sm:py-4 text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-bold rounded-xs transition-all duration-300 shadow-2xl hover:shadow-petal-veil/25 hover:-translate-y-0.5"
@@ -179,7 +200,7 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Seamless Floating Luxury Curation & Controls (No full-width dividing line) */}
+        {/* Bottom Bar: Seamless Floating Luxury Curation & Controls (No dividing line) */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 py-1">
           {/* Curation Note in floating luxury badge */}
           <div className="flex items-center gap-2 text-[11px] sm:text-[11.5px] tracking-wider font-light bg-charcoal/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
