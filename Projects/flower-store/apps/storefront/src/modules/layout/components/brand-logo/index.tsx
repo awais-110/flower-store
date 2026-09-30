@@ -175,8 +175,8 @@ export function BrandLogo({
   return (
     <div
       ref={containerRef}
-      className={`relative pointer-events-none select-none ${className}`}
-      style={{ width: "240px", height: "68px" }}
+      className={`relative pointer-events-none select-none h-full ${className}`}
+      style={{ width: "270px" }}
     >
       {/* ── 1. HANGING PILL (Visible at top, retracts up into nav on scroll) ── */}
       <div
@@ -220,8 +220,8 @@ export function BrandLogo({
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
-              width={72}
-              height={72}
+              width={76}
+              height={76}
               className="object-contain block"
               priority
             />
@@ -262,11 +262,11 @@ export function BrandLogo({
 
       {/* ── 2. COMPACT INLINE LOGO (Clean, transparent, seamlessly in nav) ── */}
       <div
-        className="absolute top-[12px] left-1/2"
+        className="absolute top-1/2 left-1/2"
         style={{
           transform: isScrolled
-            ? "translateX(-50%) translateY(0) scale(1)"
-            : "translateX(-50%) translateY(14px) scale(0.92)",
+            ? "translateX(-50%) translateY(-50%) scale(1)"
+            : "translateX(-50%) translateY(-25%) scale(0.92)",
           opacity: isScrolled ? 1 : 0,
           pointerEvents: isScrolled ? "auto" : "none",
           transition: isScrolled
@@ -288,14 +288,14 @@ export function BrandLogo({
         onMouseLeave={() => setIsHovered(false)}
         title="Click to go home"
       >
-        <div className="flex flex-row items-center gap-2.5 select-none whitespace-nowrap">
+        <div className="flex flex-row items-center gap-2 select-none whitespace-nowrap">
           <div style={flowerStyle}>
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
-              width={44}
-              height={44}
-              className="object-contain block"
+              width={64}
+              height={64}
+              className="object-contain block drop-shadow-sm"
               priority
             />
           </div>
@@ -304,7 +304,7 @@ export function BrandLogo({
               fontFamily:
                 "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
               color: "#3D2418",
-              fontSize: "34px",
+              fontSize: "38px",
               lineHeight: 1,
               userSelect: "none",
               pointerEvents: "none",

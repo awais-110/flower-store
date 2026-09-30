@@ -34,7 +34,7 @@ export function NavClient({
   return (
     <div className="relative w-full">
       {/* Hanging Center Elastic Animated Logo Pill */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 z-40 pointer-events-auto">
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full z-40 pointer-events-auto">
         {centerSlot}
       </div>
 
