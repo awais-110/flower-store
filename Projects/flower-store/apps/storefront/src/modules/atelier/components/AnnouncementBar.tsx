@@ -65,18 +65,18 @@ export const AnnouncementBar: React.FC = () => {
   return (
     <aside
       aria-label="Announcements"
-      className={`relative z-50 bg-deep-sage text-cream transition-all duration-300 ease-in-out overflow-hidden ${
+      className={`relative z-50 bg-fresh-bud text-cream transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled
           ? "max-h-0 opacity-0 -translate-y-full border-transparent"
-          : "max-h-8 opacity-100 translate-y-0 border-b border-sage/20"
+          : "max-h-8 opacity-100 translate-y-0 border-b border-blush-bloom/20"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-7 sm:h-[26px]">
           {/* Left decoration */}
-          <div className="hidden md:flex items-center gap-1.5 opacity-75 flex-shrink-0">
-            <Sparkles className="w-2.5 h-2.5 text-gold" />
-            <span className="text-[9px] uppercase tracking-[0.25em] font-medium text-cream/90">
+          <div className="hidden md:flex items-center gap-1.5 opacity-80 flex-shrink-0">
+            <Sparkles className="w-2.5 h-2.5 text-coral-blossom" />
+            <span className="text-[9px] uppercase tracking-[0.25em] font-medium text-coral-blossom">
               Atelier Concierge
             </span>
           </div>
@@ -93,7 +93,7 @@ export const AnnouncementBar: React.FC = () => {
             {current.actionText && (
               <LocalizedClientLink
                 href={current.href}
-                className="ml-2.5 text-[10px] sm:text-[11px] font-semibold text-gold hover:text-gold-light underline underline-offset-2 inline-flex items-center gap-0.5 transition-colors"
+                className="ml-2.5 text-[10px] sm:text-[11px] font-semibold text-coral-blossom hover:text-white underline underline-offset-2 inline-flex items-center gap-0.5 transition-colors"
               >
                 {current.actionText}
                 <ChevronRight className="w-2.5 h-2.5" />
@@ -110,7 +110,7 @@ export const AnnouncementBar: React.FC = () => {
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   className={`h-0.5 rounded-full transition-all ${
-                    i === currentIndex ? "bg-gold w-2.5" : "bg-cream/25 w-1"
+                    i === currentIndex ? "bg-coral-blossom w-2.5" : "bg-cream/25 w-1"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />

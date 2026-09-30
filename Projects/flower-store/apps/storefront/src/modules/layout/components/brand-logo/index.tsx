@@ -5,10 +5,14 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 const PETAL_COLORS = [
-  "#E8A08B", "#D9765A", "#F3C77E", "#C96D55",
-  "#E2907A", "#F5B8A0", "#D4876A", "#F0C080",
+  "#DA888A", // Petal Veil
+  "#E9D2D8", // Coral Blossom
+  "#7897B3", // Golden Stem
+  "#C26E70", // Deep Petal Veil
+  "#5D6F7D", // Fresh Bud
+  "#E7A5A7", // Light Petal Veil
 ]
-const LEAF_COLORS = ["#7C8F5E", "#5E7A47", "#8FA86A"]
+const LEAF_COLORS = ["#5D6F7D", "#A5ACA5", "#7897B3"]
 
 interface BrandLogoProps {
   className?: string
@@ -207,10 +211,10 @@ export function BrandLogo({
             padding: "8px 28px 20px",
             border: "none",
             background:
-              "linear-gradient(168deg, #FDF6EE 0%, #F3E0CE 60%, #EDD5C0 100%)",
+              "linear-gradient(168deg, #FAF7F4 0%, #F5E9EC 50%, #E9D2D8 100%)",
             boxShadow: isHovered
-              ? "0 16px 44px -4px rgba(80,40,20,0.26)"
-              : "0 10px 36px -4px rgba(80,40,20,0.18)",
+              ? "0 16px 44px -4px rgba(93,111,125,0.25)"
+              : "0 10px 36px -4px rgba(93,111,125,0.18)",
             cursor: "grab",
             willChange: "transform",
           }}
@@ -230,7 +234,7 @@ export function BrandLogo({
             style={{
               fontFamily:
                 "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
-              color: isHovered ? "#5C2D18" : "#3D2418",
+              color: isHovered ? "#5D6F7D" : "#2D3740",
               fontSize: "44px",
               lineHeight: 1,
               marginTop: "-4px",
@@ -247,7 +251,7 @@ export function BrandLogo({
               style={{
                 fontSize: "8px",
                 letterSpacing: "0.22em",
-                color: "#9B7B60",
+                color: "#7897B3",
                 fontWeight: 600,
                 marginTop: "4px",
                 textTransform: "uppercase",
@@ -303,12 +307,13 @@ export function BrandLogo({
             style={{
               fontFamily:
                 "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
-              color: "#3D2418",
+              color: isHovered ? "#5D6F7D" : "#2D3740",
               fontSize: "38px",
               lineHeight: 1,
               userSelect: "none",
               pointerEvents: "none",
               whiteSpace: "nowrap",
+              transition: "color .3s ease",
             }}
           >
             {title}

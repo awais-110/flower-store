@@ -20,35 +20,65 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        // ── Brand Identity Palette (Exact from Brand Guidelines) ──
+        "fresh-bud": {
+          DEFAULT: "#5D6F7D", // Slate dusty blue
+          dark: "#41515E",
+          light: "#7B8D9C",
+        },
+        "golden-stem": {
+          DEFAULT: "#7897B3", // Soft cornflower / sky blue
+          light: "#9BB3CB",
+          dark: "#5B7994",
+        },
+        "petal-veil": {
+          DEFAULT: "#DA888A", // Warm terracotta rose
+          light: "#E7A5A7",
+          dark: "#C26E70",
+        },
+        "blush-bloom": {
+          DEFAULT: "#A5ACA5", // Eucalyptus sage grey-green
+          light: "#C1C7C1",
+          dark: "#899089",
+          subtle: "#EFF2EF",
+        },
+        "coral-blossom": {
+          DEFAULT: "#E9D2D8", // Soft powdery ballet blush pink
+          light: "#F7EEF0",
+          dark: "#D7B5BE",
+        },
+
+        // ── Harmonized Semantic Tokens across Store ──
         cream: {
-          DEFAULT: "#F8F3EC",
-          light: "#FCFAF6",
-          dark: "#EFE8DD",
+          DEFAULT: "#FAF7F4",
+          light: "#FFFFFF",
+          dark: "#F0E9E2",
         },
         blush: {
-          DEFAULT: "#E8C5C1",
-          light: "#F4DFDC",
-          muted: "#F8ECEB",
+          DEFAULT: "#DA888A", // Petal Veil
+          light: "#E9D2D8",   // Coral Blossom
+          muted: "#F7EEF0",
         },
         sage: {
-          DEFAULT: "#73836B",
-          light: "#8E9E86",
-          subtle: "#EDF1EC",
+          DEFAULT: "#A5ACA5", // Blush Bloom
+          light: "#C1C7C1",
+          subtle: "#EFF2EF",
         },
         "deep-sage": {
-          DEFAULT: "#344438",
-          dark: "#243027",
+          DEFAULT: "#5D6F7D", // Fresh Bud
+          dark: "#41515E",
+          light: "#7B8D9C",
         },
         charcoal: {
-          DEFAULT: "#262522",
-          muted: "#575550",
-          light: "#8A8882",
+          DEFAULT: "#2D3740", // Deep slate
+          muted: "#5D6F7D",
+          light: "#8292A0",
         },
         gold: {
-          DEFAULT: "#C9A84C",
-          light: "#E2C77A",
-          muted: "#F3EAD3",
-          dark: "#9B7A2E",
+          DEFAULT: "#DA888A", // Petal Veil rose accent
+          light: "#E7A5A7",
+          muted: "#F7EEF0",
+          dark: "#C26E70",
         },
         grey: {
           0: "#FFFFFF",
@@ -58,7 +88,7 @@ module.exports = {
           30: "#D1D5DB",
           40: "#9CA3AF",
           50: "#6B7280",
-          60: "#4B5563",
+          61: "#4B5563",
           70: "#374151",
           80: "#1F2937",
           90: "#111827",

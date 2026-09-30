@@ -24,8 +24,8 @@
   }
 
   body {
-    background-color: #F8F3EC;
-    color: #262522;
+    background-color: #FAF7F4;
+    color: #2D3740;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -41,10 +41,10 @@
 
 @layer components {
   .price-premium {
-    @apply text-deep-sage font-semibold text-base sm:text-lg;
+    @apply text-petal-veil font-semibold text-base sm:text-lg;
   }
   .banner-premium {
-    @apply bg-cream-light border border-sage/20 rounded-lg shadow-lg;
+    @apply bg-cream-light border border-blush-bloom/25 rounded-lg shadow-lg;
   }
 }
 
@@ -140,16 +140,16 @@
   }
 
   .btn-primary {
-    @apply btn-luxury bg-deep-sage text-cream hover:bg-charcoal;
+    @apply btn-luxury bg-fresh-bud text-cream hover:bg-petal-veil hover:text-white;
   }
 
   .btn-ghost {
-    @apply btn-luxury border border-current text-deep-sage hover:bg-deep-sage hover:text-cream;
+    @apply btn-luxury border border-current text-fresh-bud hover:bg-fresh-bud hover:text-cream;
   }
 
   /* Section label style */
   .section-eyebrow {
-    @apply text-[11px] uppercase tracking-[0.35em] text-sage font-semibold;
+    @apply text-[11px] uppercase tracking-[0.35em] text-golden-stem font-semibold;
   }
 
   /* Editorial divider */
@@ -159,7 +159,7 @@
   .divider-luxury::before,
   .divider-luxury::after {
     content: '';
-    @apply flex-1 h-px bg-sage/20;
+    @apply flex-1 h-px bg-blush-bloom/30;
   }
 
 

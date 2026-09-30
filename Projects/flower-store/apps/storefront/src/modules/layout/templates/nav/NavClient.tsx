@@ -68,14 +68,14 @@ export function NavClient({
             onClick={() => openMega("shop")}
             className={`flex items-center gap-1 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold transition-all duration-200 rounded-xs group ${
               activeTab === "shop"
-                ? "bg-[#EFE8DE] text-deep-sage"
-                : "bg-[#F3ECE2]/80 hover:bg-[#EFE8DE] text-charcoal"
+                ? "bg-coral-blossom/50 text-fresh-bud"
+                : "bg-cream-dark/50 hover:bg-coral-blossom/30 text-charcoal"
             }`}
           >
             <span>SHOP</span>
             <ChevronDown
               className={`w-3 h-3 transition-transform duration-200 ${
-                activeTab === "shop" ? "rotate-180 text-gold" : "text-charcoal/60"
+                activeTab === "shop" ? "rotate-180 text-petal-veil" : "text-charcoal/60"
               }`}
             />
           </button>
@@ -86,14 +86,14 @@ export function NavClient({
             onClick={() => openMega("collections")}
             className={`flex items-center gap-1 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold transition-all duration-200 rounded-xs group ${
               activeTab === "collections"
-                ? "text-deep-sage"
-                : "text-charcoal/80 hover:text-deep-sage"
+                ? "text-petal-veil"
+                : "text-charcoal/80 hover:text-petal-veil"
             }`}
           >
             <span>COLLECTIONS</span>
             <ChevronDown
               className={`w-3 h-3 transition-transform duration-200 ${
-                activeTab === "collections" ? "rotate-180 text-gold" : "text-charcoal/60"
+                activeTab === "collections" ? "rotate-180 text-petal-veil" : "text-charcoal/60"
               }`}
             />
           </button>
@@ -101,7 +101,7 @@ export function NavClient({
           {/* Bespoke */}
           <LocalizedClientLink
             href="/custom-bouquet"
-            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-deep-sage transition-colors duration-200 rounded-xs"
+            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-petal-veil transition-colors duration-200 rounded-xs"
           >
             BESPOKE
           </LocalizedClientLink>
@@ -114,14 +114,14 @@ export function NavClient({
         <div className="flex-1 flex items-center justify-end gap-1 sm:gap-2 xl:gap-3">
           <LocalizedClientLink
             href="/#occasions"
-            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-deep-sage transition-colors duration-200"
+            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-petal-veil transition-colors duration-200"
           >
             OCCASIONS
           </LocalizedClientLink>
 
           <LocalizedClientLink
             href="/#journal"
-            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-deep-sage transition-colors duration-200"
+            className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-petal-veil transition-colors duration-200"
           >
             JOURNAL
           </LocalizedClientLink>
@@ -129,7 +129,7 @@ export function NavClient({
           {/* Search Button */}
           <button
             onClick={openSearch}
-            className="p-1.5 text-charcoal/80 hover:text-deep-sage transition-colors rounded-xs"
+            className="p-1.5 text-charcoal/80 hover:text-petal-veil transition-colors rounded-xs"
             aria-label="Search catalog"
           >
             <Search className="w-4 h-4" />
