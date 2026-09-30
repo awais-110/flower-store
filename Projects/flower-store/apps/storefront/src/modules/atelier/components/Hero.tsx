@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 interface HeroCampaign {
@@ -16,7 +16,6 @@ interface HeroCampaign {
   secondaryCtaText: string
   secondaryCtaHref: string
   stemNote: string
-  badge?: string
 }
 
 const CAMPAIGNS: HeroCampaign[] = [
@@ -33,7 +32,6 @@ const CAMPAIGNS: HeroCampaign[] = [
     secondaryCtaText: "Bespoke Bouquet Studio",
     secondaryCtaHref: "/custom-bouquet",
     stemNote: "Lahore · Heritage Garden Roses",
-    badge: "New Season Curations",
   },
   {
     id: "camp-02",
@@ -48,7 +46,6 @@ const CAMPAIGNS: HeroCampaign[] = [
     secondaryCtaText: "Floral Concierge",
     secondaryCtaHref: "/#concierge",
     stemNote: "Mogra · Sweet Pea · Italian Ranunculus",
-    badge: "Bespoke Gifting",
   },
   {
     id: "camp-03",
@@ -63,7 +60,6 @@ const CAMPAIGNS: HeroCampaign[] = [
     secondaryCtaText: "WhatsApp Concierge",
     secondaryCtaHref: "/#concierge",
     stemNote: "Islamabad · Jasmine & Golden Mimosa",
-    badge: "Limited Edition",
   },
   {
     id: "camp-04",
@@ -78,7 +74,6 @@ const CAMPAIGNS: HeroCampaign[] = [
     secondaryCtaText: "Read the Journal",
     secondaryCtaHref: "/#journal",
     stemNote: "Karachi · Double-Spike Phalaenopsis",
-    badge: "Living Sculptures",
   },
 ]
 
@@ -127,8 +122,6 @@ export const Hero: React.FC = () => {
           >
             {/* Top gradient for nav clearance & contrast */}
             <div className="absolute inset-0 bg-gradient-to-b from-charcoal/85 via-charcoal/45 to-charcoal/90 z-10" />
-            {/* Radial soft center vignette */}
-            <div className="absolute inset-0 bg-radial-vignette z-10" />
 
             <Image
               src={camp.image}
@@ -143,39 +136,27 @@ export const Hero: React.FC = () => {
         )
       })}
 
-      {/* Hero Content Container — Perfectly Centered Luxury Editorial Composition */}
-      <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-12 sm:pt-16 pb-6 sm:pb-8">
+      {/* Hero Content Container — Clean Centered Luxury Editorial */}
+      <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8">
         
-        {/* Top Meta: Badge */}
-        <div className="flex items-center justify-center">
-          {campaign.badge ? (
-            <span className="inline-flex items-center gap-2 bg-charcoal/60 backdrop-blur-md text-coral-blossom border border-coral-blossom/30 text-[10px] sm:text-[10.5px] font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full shadow-lg transition-all duration-300 hover:border-coral-blossom/60">
-              <Sparkles className="w-3 h-3 text-petal-veil" />
-              <span>{campaign.badge}</span>
-            </span>
-          ) : (
-            <div className="h-7" />
-          )}
-        </div>
-
         {/* Center Focal: Main Headlines & CTAs */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6 my-auto px-2">
-          {/* Eyebrow with elegant divider lines */}
+        <div className="max-w-3xl mx-auto text-center space-y-5 sm:space-y-6 my-auto px-2">
+          {/* Polished Eyebrow with refined gradient dividers */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
-            <span className="h-px w-6 sm:w-10 bg-coral-blossom/40 inline-block flex-shrink-0" />
-            <span className="text-[10px] sm:text-[11.5px] uppercase tracking-[0.35em] font-medium text-coral-blossom">
+            <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
+            <span className="text-[10.5px] sm:text-[12px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
               {campaign.eyebrow}
             </span>
-            <span className="h-px w-6 sm:w-10 bg-coral-blossom/40 inline-block flex-shrink-0" />
+            <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
           </div>
 
           {/* Headline in High-Fashion Editorial Typography */}
-          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-light text-cream leading-[1.08] tracking-[-0.015em] whitespace-pre-line drop-shadow-xl">
+          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light text-cream leading-[1.08] tracking-[-0.015em] whitespace-pre-line drop-shadow-2xl">
             {campaign.headline}
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xs sm:text-sm md:text-base text-cream/85 max-w-xl mx-auto font-sans leading-relaxed font-light drop-shadow-md">
+          <p className="text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl sm:max-w-2xl mx-auto font-sans leading-relaxed font-light drop-shadow-md">
             {campaign.subheadline}
           </p>
 
