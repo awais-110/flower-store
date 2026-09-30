@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useRef, useState, useCallback, useEffect } from "react"
+import React, { useRef, useState, useCallback } from "react"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 const PETAL_COLORS = ["#E8A08B", "#D9765A", "#F3C77E", "#E2907A", "#C96D55"]
@@ -14,7 +15,7 @@ interface BrandLogoProps {
 export function BrandLogo({
   className = "",
   title = "Camelia",
-  subtitle = "FLORAL STUDIO",
+  subtitle = "",
 }: BrandLogoProps) {
   const router = useRouter()
   const pillRef = useRef<HTMLDivElement>(null)
@@ -140,104 +141,27 @@ export function BrandLogo({
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
-        className="relative bg-[#FBF7EF] border-b border-x border-[#E2D8CC] rounded-b-[32px] px-6 sm:px-8 pt-3 pb-4 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-[0_12px_28px_rgba(0,0,0,0.18)] will-change-transform touch-none z-40 transition-shadow duration-300 hover:shadow-[0_16px_34px_rgba(0,0,0,0.22)]"
+        className="relative bg-cream border-b border-x border-sage/20 rounded-b-[28px] px-6 sm:px-8 pt-2 pb-5 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-[0_10px_32px_-4px_rgba(46,59,44,0.22)] will-change-transform touch-none z-40 transition-shadow duration-300 hover:shadow-[0_14px_38px_-4px_rgba(46,59,44,0.30)]"
         style={{
           transform: "translate(0,0) rotate(0deg) scale(1,1)",
         }}
         title="Pull to stretch or click to bloom!"
       >
-        {/* Flower SVG Icon with Petal Bloom Animation */}
+        {/* Original Watercolor Camellia Blossom */}
         <div
           ref={flowerRef}
-          className={`w-9 h-9 mb-1 relative transition-transform duration-300 ${
-            isBloomed ? "scale-115 -translate-y-0.5" : "scale-100"
+          className={`relative mb-1 transition-transform duration-300 ${
+            isBloomed ? "scale-110 -translate-y-0.5" : "scale-100"
           }`}
         >
-          <svg viewBox="0 0 34 34" className="w-full h-full overflow-visible">
-            {/* 5 Petals */}
-            <g>
-              <ellipse
-                cx="17"
-                cy="8"
-                rx="5.5"
-                ry="8"
-                fill="#E8A08B"
-                transform="rotate(0 17 17)"
-                className="transition-transform duration-300 origin-[17px_17px]"
-                style={{
-                  transform: isBloomed ? "scale(1.15) translateY(-1px)" : "scale(1)",
-                }}
-              />
-              <ellipse
-                cx="17"
-                cy="8"
-                rx="5.5"
-                ry="8"
-                fill="#D9765A"
-                transform="rotate(72 17 17)"
-                className="transition-transform duration-300 origin-[17px_17px]"
-                style={{
-                  transform: isBloomed ? "scale(1.15) translateY(-1px)" : "scale(1)",
-                }}
-              />
-              <ellipse
-                cx="17"
-                cy="8"
-                rx="5.5"
-                ry="8"
-                fill="#E8A08B"
-                transform="rotate(144 17 17)"
-                className="transition-transform duration-300 origin-[17px_17px]"
-                style={{
-                  transform: isBloomed ? "scale(1.15) translateY(-1px)" : "scale(1)",
-                }}
-              />
-              <ellipse
-                cx="17"
-                cy="8"
-                rx="5.5"
-                ry="8"
-                fill="#D9765A"
-                transform="rotate(216 17 17)"
-                className="transition-transform duration-300 origin-[17px_17px]"
-                style={{
-                  transform: isBloomed ? "scale(1.15) translateY(-1px)" : "scale(1)",
-                }}
-              />
-              <ellipse
-                cx="17"
-                cy="8"
-                rx="5.5"
-                ry="8"
-                fill="#E8A08B"
-                transform="rotate(288 17 17)"
-                className="transition-transform duration-300 origin-[17px_17px]"
-                style={{
-                  transform: isBloomed ? "scale(1.15) translateY(-1px)" : "scale(1)",
-                }}
-              />
-            </g>
-
-            {/* Stem and Green Leaf */}
-            <path
-              d="M17 22 Q10 26 8 32"
-              stroke="#7C8F5E"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <ellipse
-              cx="9"
-              cy="29"
-              rx="3.4"
-              ry="1.8"
-              fill="#7C8F5E"
-              transform="rotate(-30 9 29)"
-            />
-
-            {/* Golden Flower Center */}
-            <circle cx="17" cy="17" r="4.2" fill="#F3C77E" />
-          </svg>
+          <Image
+            src="/images/camelia-blossom.png"
+            alt="Camelia blossom"
+            width={52}
+            height={52}
+            className="object-contain drop-shadow-sm"
+            priority
+          />
         </div>
 
         {/* Wordmark in User's Geraldine Calligraphy Font (preserved exactly) */}
