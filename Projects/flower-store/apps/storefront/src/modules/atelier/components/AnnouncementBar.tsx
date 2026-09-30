@@ -68,57 +68,60 @@ export const AnnouncementBar: React.FC = () => {
       className={`relative z-50 bg-deep-sage text-cream transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled
           ? "max-h-0 opacity-0 -translate-y-full border-transparent"
-          : "max-h-12 opacity-100 translate-y-0 border-b border-sage/30"
+          : "max-h-8 opacity-100 translate-y-0 border-b border-sage/20"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-9">
+        <div className="flex items-center justify-between h-7 sm:h-[26px]">
           {/* Left decoration */}
-          <div className="hidden sm:flex items-center gap-2 opacity-60 flex-shrink-0">
-            <Sparkles className="w-3 h-3 text-gold" />
-            <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Atelier Concierge</span>
+          <div className="hidden md:flex items-center gap-1.5 opacity-75 flex-shrink-0">
+            <Sparkles className="w-2.5 h-2.5 text-gold" />
+            <span className="text-[9px] uppercase tracking-[0.25em] font-medium text-cream/90">
+              Atelier Concierge
+            </span>
           </div>
 
           {/* Centre rotating message */}
           <div
-            className={`flex-1 text-center px-4 transition-opacity duration-300 ${
+            className={`flex-1 text-center px-2 sm:px-4 transition-opacity duration-300 truncate ${
               fade ? "opacity-100" : "opacity-0"
             }`}
           >
-            <span className="text-[11px] sm:text-xs font-medium tracking-wide">
+            <span className="text-[10px] sm:text-[11px] font-normal tracking-wide text-cream/95">
               {current.text}
             </span>
             {current.actionText && (
               <LocalizedClientLink
                 href={current.href}
-                className="ml-3 text-[11px] sm:text-xs font-bold text-gold hover:text-gold-light underline underline-offset-2 inline-flex items-center gap-0.5 transition-colors"
+                className="ml-2.5 text-[10px] sm:text-[11px] font-semibold text-gold hover:text-gold-light underline underline-offset-2 inline-flex items-center gap-0.5 transition-colors"
               >
                 {current.actionText}
-                <ChevronRight className="w-3 h-3" />
+                <ChevronRight className="w-2.5 h-2.5" />
               </LocalizedClientLink>
             )}
           </div>
 
           {/* Right: dismiss */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2.5 flex-shrink-0">
             {/* Slide dots */}
             <div className="hidden sm:flex items-center gap-1">
               {ANNOUNCEMENTS.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`w-1 h-1 rounded-full transition-all ${
-                    i === currentIndex ? "bg-gold w-3" : "bg-cream/30"
+                  className={`h-0.5 rounded-full transition-all ${
+                    i === currentIndex ? "bg-gold w-2.5" : "bg-cream/25 w-1"
                   }`}
+                  aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
             <button
               onClick={() => setIsVisible(false)}
-              className="opacity-50 hover:opacity-100 transition-opacity p-1"
+              className="opacity-60 hover:opacity-100 transition-opacity p-0.5 text-cream/80"
               aria-label="Close announcement"
             >
-              <X className="w-3 h-3" />
+              <X className="w-2.5 h-2.5" />
             </button>
           </div>
         </div>
