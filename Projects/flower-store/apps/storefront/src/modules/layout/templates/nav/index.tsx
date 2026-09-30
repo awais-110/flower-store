@@ -24,8 +24,8 @@ export default async function Nav() {
       <AnnouncementBar />
 
       {/* Main header */}
-      <header className="relative bg-cream/95 backdrop-blur-md border-b border-sage/15 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="relative bg-cream/95 backdrop-blur-md border-b border-sage/15 shadow-sm overflow-visible">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <NavClient
             centerSlot={<BrandLogo />}
             mobileMenuSlot={

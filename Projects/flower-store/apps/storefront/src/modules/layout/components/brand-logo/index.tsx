@@ -27,7 +27,9 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const router = useRouter()
   const containerRef = useRef<HTMLDivElement>(null)
-  const pillRef = useRef<HTMLDivElement>(null) // drag target
+  const pillRef = useRef<HTMLDivElement>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
+  const svgPathRef = useRef<SVGPathElement>(null)
 
   const isDragging = useRef(false)
   const startX = useRef(0)
@@ -39,7 +41,7 @@ export function BrandLogo({
   const [isHovered, setIsHovered] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  // ── Scroll detection with hysteresis to prevent jitter ─────────────────
+  // ── Scroll detection with hysteresis ─────────────────────────────────
   useEffect(() => {
     let ticking = false
 
@@ -47,8 +49,6 @@ export function BrandLogo({
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const sy = window.scrollY
-          // Trigger compact mode when scrolling down past 45px
-          // Revert to hanging pill only when scrolled back up above 15px
           if (sy > 45) {
             setIsScrolled(true)
           } else if (sy < 15) {
@@ -101,20 +101,45 @@ export function BrandLogo({
     }
   }, [])
 
-  // ── Drag physics (hanging mode only) ──────────────────────────────────
+  // ── Update SVG elastic connector ──────────────────────────────────────
+  const updateConnector = useCallback((dx: number, dy: number, visible: boolean) => {
+    const svg = svgRef.current
+    const path = svgPathRef.current
+    if (!svg || !path) return
+
+    if (!visible || (Math.abs(dx) < 4 && dy < 4)) {
+      svg.style.opacity = "0"
+      return
+    }
+
+    // Bezier control points: stretch outward as you pull
+    const cx1 = dx * 0.1
+    const cy1 = dy * 0.5
+    const cx2 = dx * 0.9
+    const cy2 = dy * 0.5
+    path.setAttribute("d", `M 0 0 C ${cx1} ${cy1}, ${cx2} ${cy2}, ${dx} ${dy}`)
+
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    svg.style.opacity = Math.min(0.85, dist / 55).toString()
+  }, [])
+
+  // ── Drag physics ───────────────────────────────────────────────────────
   const setDragTransform = useCallback((dx: number, dy: number) => {
     const pill = pillRef.current
     if (!pill) return
-    const cy = Math.max(0, Math.min(dy, 100))
-    const cx = Math.max(-45, Math.min(dx, 45))
-    const stretch = 1 + cy / 220
-    const squeeze = 1 - cy / 600
-    const rotate = cx / 5.5
-    const shadowO = 0.18 + (cy / 100) * 0.22
+    const cy = Math.max(0, Math.min(dy, 110))
+    const cx = Math.max(-50, Math.min(dx, 50))
+    const stretch = 1 + cy / 240
+    const squeeze = 1 - cy / 640
+    const rotate = cx / 6
+    const shadowO = 0.22 + (cy / 110) * 0.26
     pill.style.transform = `translate(${cx}px, ${cy}px) rotate(${rotate}deg) scale(${squeeze}, ${stretch})`
-    pill.style.boxShadow = `0 ${12 + cy * 0.3}px ${36 + cy * 0.5}px -4px rgba(45,55,64,${shadowO})`
+    pill.style.boxShadow = `0 ${14 + cy * 0.4}px ${42 + cy * 0.6}px -4px rgba(0,0,0,${shadowO}), inset 0 1px 0 rgba(255,255,255,0.28)`
     dragDist.current = Math.sqrt(dx * dx + dy * dy)
-  }, [])
+
+    // Update elastic SVG line
+    updateConnector(cx, cy, true)
+  }, [updateConnector])
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.button !== 0 || isScrolled) return
@@ -126,9 +151,7 @@ export function BrandLogo({
     const pill = pillRef.current
     if (pill) {
       pill.style.transition = "transform .05s linear"
-      try {
-        pill.setPointerCapture(e.pointerId)
-      } catch {}
+      try { pill.setPointerCapture(e.pointerId) } catch {}
     }
   }
 
@@ -146,12 +169,16 @@ export function BrandLogo({
     const pill = pillRef.current
     if (pill) {
       pill.style.transition =
-        "transform .7s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease"
+        "transform .75s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease"
       pill.style.transform = "translate(0,0) rotate(0deg) scale(1,1)"
       pill.style.boxShadow = ""
-      try {
-        pill.releasePointerCapture(e.pointerId)
-      } catch {}
+      try { pill.releasePointerCapture(e.pointerId) } catch {}
+    }
+    // Fade out elastic line
+    const svg = svgRef.current
+    if (svg) {
+      svg.style.transition = "opacity 0.35s ease"
+      svg.style.opacity = "0"
     }
     triggerBurst()
     if (!hasMoved.current || dragDist.current < 12) {
@@ -161,7 +188,7 @@ export function BrandLogo({
     }
   }
 
-  // ── Flower blossom styling: hanging vs compact ───────────────────────
+  // ── Flower blossom styling: hanging vs compact ────────────────────────
   const hangingFlowerStyle: React.CSSProperties = {
     transition: "transform .5s cubic-bezier(.34,1.3,.64,1), filter .4s ease",
     transform: isBloomed
@@ -170,10 +197,10 @@ export function BrandLogo({
       ? "scale(1.08) translateY(-2px) rotate(-5deg)"
       : "scale(1) translateY(0) rotate(0deg)",
     filter: isBloomed
-      ? "drop-shadow(0 4px 16px rgba(233,210,216,0.9)) drop-shadow(0 2px 6px rgba(0,0,0,0.3))"
+      ? "drop-shadow(0 4px 18px rgba(233,210,216,0.95)) drop-shadow(0 2px 6px rgba(0,0,0,0.28))"
       : isHovered
-      ? "drop-shadow(0 3px 12px rgba(255,255,255,0.65)) drop-shadow(0 2px 5px rgba(0,0,0,0.2))"
-      : "drop-shadow(0 2px 8px rgba(255,255,255,0.45)) drop-shadow(0 2px 4px rgba(0,0,0,0.18))",
+      ? "drop-shadow(0 3px 14px rgba(255,255,255,0.7)) drop-shadow(0 2px 5px rgba(0,0,0,0.18))"
+      : "drop-shadow(0 2px 10px rgba(255,255,255,0.5)) drop-shadow(0 2px 4px rgba(0,0,0,0.16))",
   }
 
   const compactFlowerStyle: React.CSSProperties = {
@@ -196,7 +223,38 @@ export function BrandLogo({
       className={`relative pointer-events-none select-none h-full ${className}`}
       style={{ width: "290px" }}
     >
-      {/* ── 1. HANGING PILL (Visible at top, retracts up into nav on scroll) ── */}
+      {/* ── SVG Elastic Connector (rubber-band line from nav anchor to dragged pill) ── */}
+      <svg
+        ref={svgRef}
+        style={{
+          position: "absolute",
+          top: "100%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          overflow: "visible",
+          pointerEvents: "none",
+          opacity: 0,
+          zIndex: 39,
+          transition: "opacity 0s linear",
+        }}
+        width="200"
+        height="200"
+        viewBox="-100 0 200 200"
+      >
+        <path
+          ref={svgPathRef}
+          d="M 0 0 C 0 0, 0 0, 0 0"
+          fill="none"
+          stroke="rgba(93,111,125,0.55)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray="4 6"
+        />
+        {/* Anchor circle at nav bottom */}
+        <circle cx="0" cy="0" r="3.5" fill="rgba(93,111,125,0.7)" />
+      </svg>
+
+      {/* ── 1. HANGING PILL — glassmorphism bubble attached to nav ── */}
       <div
         className="absolute top-0 left-1/2"
         style={{
@@ -209,8 +267,22 @@ export function BrandLogo({
             ? "transform 0.52s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.32s ease"
             : "transform 0.65s cubic-bezier(0.34, 1.35, 0.64, 1) 0.05s, opacity 0.45s ease 0.05s",
           willChange: "transform, opacity",
+          zIndex: 41,
         }}
       >
+        {/* Top "neck" strip — visually glues pill to nav bar bottom */}
+        <div
+          style={{
+            width: "56px",
+            height: "6px",
+            margin: "0 auto",
+            borderRadius: "0 0 0 0",
+            background: "rgba(80, 96, 110, 0.82)",
+            backdropFilter: "blur(20px) saturate(1.3)",
+            WebkitBackdropFilter: "blur(20px) saturate(1.3)",
+          }}
+          aria-hidden="true"
+        />
         <div
           ref={pillRef}
           onPointerDown={onPointerDown}
@@ -219,19 +291,22 @@ export function BrandLogo({
           onPointerCancel={onPointerUp}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex flex-col items-center justify-center select-none touch-none z-40"
+          className="flex flex-col items-center justify-center select-none touch-none"
           style={{
-            borderRadius: "0 0 28px 28px",
-            padding: "8px 28px 20px",
-            border: "1px solid rgba(233, 210, 216, 0.32)",
+            borderRadius: "0 0 30px 30px",
+            padding: "10px 30px 22px",
+            // Glassmorphism: semi-transparent Fresh Bud + backdrop blur
+            background: "rgba(75, 90, 103, 0.78)",
+            backdropFilter: "blur(22px) saturate(1.35)",
+            WebkitBackdropFilter: "blur(22px) saturate(1.35)",
+            border: "1px solid rgba(255,255,255,0.22)",
             borderTop: "none",
-            background:
-              "linear-gradient(172deg, #687B8A 0%, #5D6F7D 50%, #4A5966 100%)",
             boxShadow: isHovered
-              ? "0 20px 48px -4px rgba(0,0,0,0.48), 0 0 0 1px rgba(233,210,216,0.3)"
-              : "0 12px 38px -4px rgba(0,0,0,0.36), 0 0 0 1px rgba(233,210,216,0.18)",
+              ? "0 22px 52px -4px rgba(0,0,0,0.44), inset 0 1px 0 rgba(255,255,255,0.22), 0 0 0 0.5px rgba(255,255,255,0.12)"
+              : "0 14px 40px -4px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 0.5px rgba(255,255,255,0.08)",
             cursor: "grab",
             willChange: "transform",
+            transition: "box-shadow 0.3s ease",
           }}
           title="Pull me down or click to bloom!"
         >
@@ -241,7 +316,7 @@ export function BrandLogo({
               alt="Camelia blossom"
               width={84}
               height={58}
-              className="w-[78px] h-auto object-contain block drop-shadow-md"
+              className="w-[78px] h-auto object-contain block"
               priority
             />
           </div>
@@ -253,11 +328,11 @@ export function BrandLogo({
               fontSize: "44px",
               lineHeight: 1,
               marginTop: "-4px",
-              textShadow: "0 1px 3px rgba(0,0,0,0.35), 0 0 12px rgba(255,255,255,0.15)",
+              textShadow: "0 1px 3px rgba(0,0,0,0.38), 0 0 14px rgba(255,255,255,0.12)",
               userSelect: "none",
               pointerEvents: "none",
               whiteSpace: "nowrap",
-              transition: "color .3s ease, text-shadow .3s ease",
+              transition: "color .3s ease",
             }}
           >
             {title}
