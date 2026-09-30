@@ -141,7 +141,7 @@ export function BrandLogo({
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
-        className="relative bg-cream border-b border-x border-sage/20 rounded-b-[28px] px-6 sm:px-8 pt-2 pb-5 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-[0_10px_32px_-4px_rgba(46,59,44,0.22)] will-change-transform touch-none z-40 transition-shadow duration-300 hover:shadow-[0_14px_38px_-4px_rgba(46,59,44,0.30)]"
+        className="relative bg-[#F2DDD5] border-b border-x border-[#D9B5AA] rounded-b-[28px] px-6 sm:px-8 pt-2 pb-5 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-[0_10px_32px_-4px_rgba(92,45,58,0.20)] will-change-transform touch-none z-40 transition-shadow duration-300 hover:shadow-[0_14px_38px_-4px_rgba(92,45,58,0.28)]"
         style={{
           transform: "translate(0,0) rotate(0deg) scale(1,1)",
         }}
