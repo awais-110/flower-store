@@ -22,25 +22,25 @@ interface HeroCampaign {
 const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-01",
-    eyebrow: "Camelia · Signature Collection",
+    eyebrow: "Camelia · Haute Botanical Atelier",
     headline: "Roses of Lahore,\nSpoken to the World",
     subheadline:
-      "Pakistan's rarest garden roses, French ranunculus and Himalayan wildflowers — composed into a single, breathtaking arrangement.",
+      "Pakistan's rarest morning-cut garden roses, French ranunculus, and Himalayan botanicals — composed into breathtaking living sculptures.",
     image:
       "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=2000&q=85",
-    ctaText: "Explore Collection",
+    ctaText: "Explore Collections",
     ctaHref: "/store",
-    secondaryCtaText: "Bespoke Bouquet",
+    secondaryCtaText: "Bespoke Bouquet Studio",
     secondaryCtaHref: "/custom-bouquet",
     stemNote: "Lahore · Heritage Garden Roses",
     badge: "New Season Curations",
   },
   {
     id: "camp-02",
-    eyebrow: "Camelia · Weddings & Eid",
+    eyebrow: "Camelia · Bespoke Gifting & Eid",
     headline: "Express Love\nThrough Flowers",
     subheadline:
-      "Hand-penned calligraphy cards and a wax seal accompany every arrangement — delivered to any city across Pakistan.",
+      "Hand-penned calligraphy cards and an authentic wax seal accompany every curation — delivered white-glove to any city across Pakistan.",
     image:
       "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=2000&q=85",
     ctaText: "Send as a Gift",
@@ -55,7 +55,7 @@ const CAMPAIGNS: HeroCampaign[] = [
     eyebrow: "Camelia · Milestones & Banquets",
     headline: "Celebrate Every\nMoment in Bloom",
     subheadline:
-      "Golden mimosa, apricot garden blooms and white jasmine — a timeless curation for every milestone that deserves remembrance.",
+      "Golden mimosa, apricot garden blooms, and white jasmine — a timeless curation crafted for every milestone that deserves remembrance.",
     image:
       "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=2000&q=85",
     ctaText: "Shop Celebrations",
@@ -70,7 +70,7 @@ const CAMPAIGNS: HeroCampaign[] = [
     eyebrow: "Camelia · Sculptural Botanicals",
     headline: "Beauty in\nGentle Silence",
     subheadline:
-      "Rare Phalaenopsis orchids, nestled in French ceramic vessels — vivid for months, elevating every corner of your home.",
+      "Rare double-spike Phalaenopsis orchids nestled in handcrafted ceramic vessels — vivid for months, elevating every interior.",
     image:
       "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=2000&q=85",
     ctaText: "Orchid Collection",
@@ -114,8 +114,8 @@ export const Hero: React.FC = () => {
   const campaign = CAMPAIGNS[currentSlide]
 
   return (
-    <section className="relative h-[calc(100vh-130px)] min-h-[520px] max-h-[760px] lg:min-h-[580px] lg:max-h-[800px] w-full overflow-hidden bg-charcoal">
-      {/* Background Slides with Cinema Scrim */}
+    <section className="relative h-[calc(100vh-110px)] min-h-[580px] max-h-[820px] lg:min-h-[640px] lg:max-h-[860px] w-full overflow-hidden bg-charcoal">
+      {/* Background Slides with Multi-Layer Cinema Scrim */}
       {CAMPAIGNS.map((camp, index) => {
         const isActive = index === currentSlide
         return (
@@ -125,9 +125,10 @@ export const Hero: React.FC = () => {
               isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
-            {/* Multi-layer atmospheric scrims */}
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/55 to-charcoal/20 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-charcoal/25 z-10" />
+            {/* Top gradient for nav clearance & contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-charcoal/85 via-charcoal/45 to-charcoal/90 z-10" />
+            {/* Radial soft center vignette */}
+            <div className="absolute inset-0 bg-radial-vignette z-10" />
 
             <Image
               src={camp.image}
@@ -142,46 +143,47 @@ export const Hero: React.FC = () => {
         )
       })}
 
-      {/* Hero Content Container — Perfectly balanced vertical flex */}
-      <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between py-6 sm:py-8 lg:py-10">
+      {/* Hero Content Container — Perfectly Centered Luxury Editorial Composition */}
+      <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-12 sm:pt-16 pb-6 sm:pb-8">
         
         {/* Top Meta: Badge */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
           {campaign.badge ? (
-            <span className="inline-flex items-center gap-1.5 bg-gold/90 backdrop-blur-md text-charcoal text-[9.5px] sm:text-[10px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-full shadow-md transition-all duration-300">
-              <Sparkles className="w-3 h-3 text-charcoal" />
+            <span className="inline-flex items-center gap-2 bg-charcoal/60 backdrop-blur-md text-coral-blossom border border-coral-blossom/30 text-[10px] sm:text-[10.5px] font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full shadow-lg transition-all duration-300 hover:border-coral-blossom/60">
+              <Sparkles className="w-3 h-3 text-petal-veil" />
               <span>{campaign.badge}</span>
             </span>
           ) : (
-            <div />
+            <div className="h-7" />
           )}
         </div>
 
         {/* Center Focal: Main Headlines & CTAs */}
-        <div className="max-w-2xl space-y-4 sm:space-y-5 my-auto">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-gold inline-block flex-shrink-0" />
-            <span className="text-[10.5px] sm:text-[11.5px] uppercase tracking-[0.3em] font-semibold text-gold/95">
+        <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6 my-auto px-2">
+          {/* Eyebrow with elegant divider lines */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <span className="h-px w-6 sm:w-10 bg-coral-blossom/40 inline-block flex-shrink-0" />
+            <span className="text-[10px] sm:text-[11.5px] uppercase tracking-[0.35em] font-medium text-coral-blossom">
               {campaign.eyebrow}
             </span>
+            <span className="h-px w-6 sm:w-10 bg-coral-blossom/40 inline-block flex-shrink-0" />
           </div>
 
-          {/* Headline */}
-          <h1 className="font-editorial text-3xl sm:text-5xl lg:text-6xl font-light text-white leading-[1.1] whitespace-pre-line drop-shadow-md">
+          {/* Headline in High-Fashion Editorial Typography */}
+          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-light text-cream leading-[1.08] tracking-[-0.015em] whitespace-pre-line drop-shadow-xl">
             {campaign.headline}
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xs sm:text-sm md:text-base text-cream/90 max-w-xl font-sans leading-relaxed font-light">
+          <p className="text-xs sm:text-sm md:text-base text-cream/85 max-w-xl mx-auto font-sans leading-relaxed font-light drop-shadow-md">
             {campaign.subheadline}
           </p>
 
           {/* Action CTAs */}
-          <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="pt-3 sm:pt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <LocalizedClientLink
               href={campaign.ctaHref}
-              className="group inline-flex items-center gap-2.5 bg-cream text-deep-sage hover:bg-gold hover:text-charcoal px-6 sm:px-8 py-3 sm:py-3.5 text-[11px] sm:text-[12px] uppercase tracking-widest font-bold rounded-xs transition-all duration-300 shadow-xl hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2.5 bg-cream text-charcoal hover:bg-petal-veil hover:text-white px-7 sm:px-9 py-3.5 sm:py-4 text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-bold rounded-xs transition-all duration-300 shadow-2xl hover:shadow-petal-veil/25 hover:-translate-y-0.5"
             >
               <span>{campaign.ctaText}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -189,24 +191,24 @@ export const Hero: React.FC = () => {
 
             <LocalizedClientLink
               href={campaign.secondaryCtaHref}
-              className="inline-flex items-center gap-2 border border-cream/40 hover:border-cream bg-cream/10 hover:bg-cream/20 backdrop-blur-md text-cream px-5 sm:px-7 py-3 sm:py-3.5 text-[11px] sm:text-[12px] uppercase tracking-widest font-semibold rounded-xs transition-all duration-300"
+              className="inline-flex items-center gap-2 border border-cream/35 hover:border-cream bg-charcoal/30 hover:bg-charcoal/50 backdrop-blur-md text-cream px-6 sm:px-8 py-3.5 sm:py-4 text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-semibold rounded-xs transition-all duration-300 hover:-translate-y-0.5"
             >
-              {campaign.secondaryCtaText}
+              <span>{campaign.secondaryCtaText}</span>
             </LocalizedClientLink>
           </div>
         </div>
 
-        {/* Bottom Bar: Stem Note & Controls */}
-        <div className="pt-4 border-t border-cream/15 flex items-center justify-between gap-4">
-          {/* Stem Note */}
-          <p className="hidden sm:flex items-center gap-2 text-[11px] text-cream/70 tracking-wider font-light">
-            <span className="text-gold">✦</span>
-            <span>Curation:</span>
+        {/* Bottom Bar: Curation Note & Controls */}
+        <div className="pt-4 border-t border-cream/15 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          {/* Stem / Curation Note */}
+          <p className="flex items-center gap-2 text-[11px] text-cream/75 tracking-wider font-light">
+            <span className="text-petal-veil">✦</span>
+            <span className="text-cream/60">Curation:</span>
             <span className="text-cream font-medium">{campaign.stemNote}</span>
           </p>
 
           {/* Slide Navigation Controls */}
-          <div className="flex items-center gap-4 sm:gap-6 ml-auto sm:ml-0">
+          <div className="flex items-center gap-4 sm:gap-6">
             {/* Pill Indicators */}
             <div className="flex items-center gap-1.5">
               {CAMPAIGNS.map((_, i) => (
@@ -215,8 +217,8 @@ export const Hero: React.FC = () => {
                   onClick={() => goTo(i)}
                   className={`transition-all duration-300 rounded-full ${
                     i === currentSlide
-                      ? "w-6 h-1.5 bg-gold"
-                      : "w-2 h-1.5 bg-cream/35 hover:bg-cream/60"
+                      ? "w-7 h-1.5 bg-petal-veil"
+                      : "w-2 h-1.5 bg-cream/30 hover:bg-cream/60"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
@@ -224,7 +226,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Slide Index Display */}
-            <span className="font-editorial text-sm sm:text-base tracking-widest font-light text-gold">
+            <span className="font-editorial text-sm sm:text-base tracking-widest font-light text-coral-blossom">
               0{currentSlide + 1}
               <span className="text-cream/40 text-xs ml-1">/ 0{CAMPAIGNS.length}</span>
             </span>
@@ -233,14 +235,14 @@ export const Hero: React.FC = () => {
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handlePrev}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/30 hover:border-cream bg-cream/10 hover:bg-cream/25 text-cream rounded-xs transition-all duration-200"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/25 hover:border-cream bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm text-cream rounded-xs transition-all duration-200"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/30 hover:border-cream bg-cream/10 hover:bg-cream/25 text-cream rounded-xs transition-all duration-200"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-cream/25 hover:border-cream bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm text-cream rounded-xs transition-all duration-200"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-4 h-4" />
