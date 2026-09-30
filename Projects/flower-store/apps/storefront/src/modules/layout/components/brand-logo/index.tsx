@@ -176,7 +176,7 @@ export function BrandLogo({
     <div
       ref={containerRef}
       className={`relative pointer-events-none select-none h-full ${className}`}
-      style={{ width: "270px" }}
+      style={{ width: "290px" }}
     >
       {/* ── 1. HANGING PILL (Visible at top, retracts up into nav on scroll) ── */}
       <div
@@ -220,9 +220,9 @@ export function BrandLogo({
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
-              width={76}
-              height={76}
-              className="object-contain block"
+              width={84}
+              height={58}
+              className="w-[78px] h-auto object-contain block"
               priority
             />
           </div>
@@ -288,14 +288,14 @@ export function BrandLogo({
         onMouseLeave={() => setIsHovered(false)}
         title="Click to go home"
       >
-        <div className="flex flex-row items-center gap-2 select-none whitespace-nowrap">
-          <div style={flowerStyle}>
+        <div className="flex flex-row items-center gap-2.5 select-none whitespace-nowrap">
+          <div style={flowerStyle} className="flex-shrink-0">
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
-              width={64}
-              height={64}
-              className="object-contain block drop-shadow-sm"
+              width={84}
+              height={58}
+              className="w-[78px] h-auto object-contain block drop-shadow-sm"
               priority
             />
           </div>

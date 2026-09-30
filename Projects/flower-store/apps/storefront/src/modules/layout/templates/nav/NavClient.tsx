@@ -107,8 +107,8 @@ export function NavClient({
           </LocalizedClientLink>
         </nav>
 
-        {/* Center Space Reservation (Ensures left & right links never collide with the hanging medallion) */}
-        <div className="w-52 sm:w-60 lg:w-68 flex-shrink-0 flex items-center justify-center" aria-hidden="true" />
+        {/* Center Space Reservation (Ensures left & right links never collide with the logo) */}
+        <div className="w-56 sm:w-64 lg:w-72 flex-shrink-0 flex items-center justify-center" aria-hidden="true" />
 
         {/* Right Side: Occasions, Journal, Search, Account, Cart */}
         <div className="flex-1 flex items-center justify-end gap-1 sm:gap-2 xl:gap-3">
