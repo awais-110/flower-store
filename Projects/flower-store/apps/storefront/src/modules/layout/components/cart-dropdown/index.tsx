@@ -80,12 +80,12 @@ const CartDropdown = ({
       onMouseLeave={close}
     >
       <Popover className="relative h-full">
-        <PopoverButton className="h-full">
+        <PopoverButton className="h-full flex items-center">
             <LocalizedClientLink
-              className="btn-primary"
+              className="bg-[#2D4030] hover:bg-[#1E2B20] text-cream px-3.5 sm:px-4 py-2 rounded-xs font-bold text-[11px] uppercase tracking-[0.14em] shadow-xs transition-colors inline-flex items-center justify-center whitespace-nowrap"
               href="/cart"
               data-testid="nav-cart-link"
-            >{`Cart (${totalItems})`}</LocalizedClientLink>
+            >{`CART (${totalItems})`}</LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}

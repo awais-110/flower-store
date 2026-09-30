@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { Sparkles, X, ChevronRight } from "lucide-react";
-import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import React, { useState, useEffect } from "react"
+import { Sparkles, X, ChevronRight } from "lucide-react"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const ANNOUNCEMENTS = [
   {
@@ -32,29 +32,44 @@ const ANNOUNCEMENTS = [
 ]
 
 export const AnnouncementBar: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const [fade, setFade] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+  const [fade, setFade] = useState(true)
+  const [isScrolled, setIsScrolled] = useState(false)
 
+  // Auto-rotate announcements
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false);
+      setFade(false)
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % ANNOUNCEMENTS.length);
-        setFade(true);
-      }, 350);
-    }, 5500);
-    return () => clearInterval(interval);
-  }, []);
+        setCurrentIndex((prev) => (prev + 1) % ANNOUNCEMENTS.length)
+        setFade(true)
+      }, 350)
+    }, 5500)
+    return () => clearInterval(interval)
+  }, [])
 
-  if (!isVisible) return null;
+  // Hide smoothly on scroll down, reveal on top
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-  const current = ANNOUNCEMENTS[currentIndex];
+  if (!isVisible) return null
+
+  const current = ANNOUNCEMENTS[currentIndex]
 
   return (
     <aside
       aria-label="Announcements"
-      className="relative z-50 bg-deep-sage text-cream border-b border-sage/30"
+      className={`relative z-50 bg-deep-sage text-cream transition-all duration-300 ease-in-out overflow-hidden ${
+        isScrolled
+          ? "max-h-0 opacity-0 -translate-y-full border-transparent"
+          : "max-h-12 opacity-100 translate-y-0 border-b border-sage/30"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-9">
@@ -109,5 +124,7 @@ export const AnnouncementBar: React.FC = () => {
         </div>
       </div>
     </aside>
-  );
-};
+  )
+}
+
+export default AnnouncementBar

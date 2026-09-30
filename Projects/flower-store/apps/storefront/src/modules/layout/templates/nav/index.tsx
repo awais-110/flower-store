@@ -32,28 +32,25 @@ export default async function Nav() {
               <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
             }
             rightActionsSlot={
-              <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+              <div className="flex items-center gap-1 sm:gap-2 xl:gap-3 flex-shrink-0">
                 {/* Account link (desktop) */}
                 <LocalizedClientLink
-                  className="hidden lg:inline-flex text-[11px] uppercase tracking-widest text-charcoal-muted hover:text-deep-sage transition-colors font-semibold"
+                  className="px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-semibold text-charcoal/80 hover:text-deep-sage transition-colors duration-200"
                   href="/account"
                   data-testid="nav-account-link"
                 >
-                  Account
+                  ACCOUNT
                 </LocalizedClientLink>
 
                 {/* Cart Button */}
                 <Suspense
                   fallback={
                     <LocalizedClientLink
-                      className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-charcoal hover:text-deep-sage font-semibold transition-colors"
+                      className="bg-[#2D4030] hover:bg-[#1E2B20] text-cream px-3.5 sm:px-4 py-2 rounded-xs font-bold text-[11px] uppercase tracking-[0.14em] shadow-xs transition-colors inline-flex items-center justify-center whitespace-nowrap"
                       href="/cart"
                       data-testid="nav-cart-link"
                     >
-                      <span>Bag</span>
-                      <span className="bg-deep-sage text-cream text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                        0
-                      </span>
+                      CART (0)
                     </LocalizedClientLink>
                   }
                 >
