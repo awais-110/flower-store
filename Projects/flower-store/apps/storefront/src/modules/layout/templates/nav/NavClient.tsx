@@ -33,11 +33,9 @@ export function NavClient({
 
   return (
     <div className="relative w-full">
-      {/* Hanging Center Curved Medallion (Drops down from nav onto the hero banner) */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 z-30 pointer-events-auto">
-        <div className="bg-[#FAF7F2] border-b border-x border-sage/25 shadow-lg rounded-b-[2.2rem] sm:rounded-b-[2.6rem] px-5 sm:px-8 pt-1.5 pb-3.5 flex flex-col items-center justify-center transition-all duration-300 hover:shadow-xl hover:border-gold/40">
-          {centerSlot}
-        </div>
+      {/* Hanging Center Elastic Animated Logo Pill */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 z-40 pointer-events-auto">
+        {centerSlot}
       </div>
 
       {/* Mobile view (< lg) */}
