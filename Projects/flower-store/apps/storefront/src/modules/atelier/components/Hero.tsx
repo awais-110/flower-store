@@ -8,9 +8,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 interface HeroCampaign {
   id: string
   eyebrow: string
-  headlinePrefix: string
-  headlineScript: string
-  headlineSuffix?: string
+  headline: string
   subheadline: string
   image: string
   ctaText: string
@@ -24,9 +22,7 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-01",
     eyebrow: "Camelia · Haute Botanical Atelier",
-    headlinePrefix: "Roses of Lahore,",
-    headlineScript: "Spoken",
-    headlineSuffix: "to the World",
+    headline: "Roses of Lahore,\nSpoken to the World",
     subheadline:
       "Pakistan's rarest morning-cut garden roses, French ranunculus, and Himalayan botanicals — composed into breathtaking living sculptures.",
     image:
@@ -40,9 +36,7 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-02",
     eyebrow: "Camelia · Bespoke Gifting & Eid",
-    headlinePrefix: "Express",
-    headlineScript: "Love",
-    headlineSuffix: "Through Flowers",
+    headline: "Express Love\nThrough Flowers",
     subheadline:
       "Hand-penned calligraphy cards and an authentic wax seal accompany every curation — delivered white-glove to any city across Pakistan.",
     image:
@@ -56,9 +50,7 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-03",
     eyebrow: "Camelia · Milestones & Banquets",
-    headlinePrefix: "Celebrate Every",
-    headlineScript: "Moment",
-    headlineSuffix: "in Bloom",
+    headline: "Celebrate Every\nMoment in Bloom",
     subheadline:
       "Golden mimosa, apricot garden blooms, and white jasmine — a timeless curation crafted for every milestone that deserves remembrance.",
     image:
@@ -72,9 +64,7 @@ const CAMPAIGNS: HeroCampaign[] = [
   {
     id: "camp-04",
     eyebrow: "Camelia · Sculptural Botanicals",
-    headlinePrefix: "Beauty in",
-    headlineScript: "Gentle Silence",
-    headlineSuffix: "",
+    headline: "Beauty in\nGentle Silence",
     subheadline:
       "Rare double-spike Phalaenopsis orchids nestled in handcrafted ceramic vessels — vivid for months, elevating every interior.",
     image:
@@ -135,7 +125,7 @@ export const Hero: React.FC = () => {
 
             <Image
               src={camp.image}
-              alt={camp.headlinePrefix}
+              alt={camp.headline}
               fill
               priority={index === 0}
               className={`object-cover object-center transition-transform duration-[9000ms] ease-out ${
@@ -146,7 +136,7 @@ export const Hero: React.FC = () => {
         )
       })}
 
-      {/* Hero Content Container — Clean Centered Luxury Editorial */}
+      {/* Hero Content Container — Clean Centered Official Luxury */}
       <div className="relative z-20 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8">
         
         {/* Center Focal: Main Headlines & CTAs */}
@@ -154,30 +144,19 @@ export const Hero: React.FC = () => {
           {/* Polished Eyebrow with refined gradient dividers */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
-            <span className="text-[10.5px] sm:text-[12px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
+            <span className="font-saira text-[11px] sm:text-[12.5px] uppercase tracking-[0.32em] font-medium text-coral-blossom drop-shadow-sm">
               {campaign.eyebrow}
             </span>
             <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-coral-blossom/70 inline-block flex-shrink-0" />
           </div>
 
-          {/* Headline in High-Fashion Editorial Typography + Script Pairing */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] text-cream leading-[1.12] sm:leading-[1.18] tracking-[-0.015em] drop-shadow-2xl">
-            <span className="font-editorial font-light">{campaign.headlinePrefix} </span>
-            <span
-              className="font-geraldine text-4xl sm:text-6xl md:text-7xl lg:text-[84px] text-coral-blossom font-normal inline-block px-1.5 -rotate-1 drop-shadow-md align-middle"
-              style={{
-                fontFamily: "var(--font-geraldine), 'Geraldine', cursive, serif",
-              }}
-            >
-              {campaign.headlineScript}
-            </span>
-            {campaign.headlineSuffix && (
-              <span className="font-editorial font-light block sm:inline"> {campaign.headlineSuffix}</span>
-            )}
+          {/* Clean Decent Official Luxury Headline in Saira */}
+          <h1 className="font-saira text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-semibold text-cream leading-[1.08] sm:leading-[1.1] tracking-[-0.025em] whitespace-pre-line drop-shadow-2xl max-w-3xl mx-auto">
+            {campaign.headline}
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl sm:max-w-2xl mx-auto font-sans leading-relaxed font-light drop-shadow-md">
+          {/* Subheadline in Saira Light */}
+          <p className="font-saira text-xs sm:text-sm md:text-[15px] text-cream/90 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
             {campaign.subheadline}
           </p>
 
@@ -185,7 +164,7 @@ export const Hero: React.FC = () => {
           <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <LocalizedClientLink
               href={campaign.ctaHref}
-              className="group inline-flex items-center gap-2.5 bg-cream text-charcoal hover:bg-petal-veil hover:text-white px-7 sm:px-9 py-3.5 sm:py-4 text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-bold rounded-xs transition-all duration-300 shadow-2xl hover:shadow-petal-veil/25 hover:-translate-y-0.5"
+              className="font-saira group inline-flex items-center gap-2.5 bg-cream text-charcoal hover:bg-petal-veil hover:text-white px-8 sm:px-10 py-3.5 sm:py-4 text-[11.5px] sm:text-[12px] uppercase tracking-[0.18em] font-bold rounded-xs transition-all duration-300 shadow-2xl hover:shadow-petal-veil/25 hover:-translate-y-0.5"
             >
               <span>{campaign.ctaText}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -193,17 +172,17 @@ export const Hero: React.FC = () => {
 
             <LocalizedClientLink
               href={campaign.secondaryCtaHref}
-              className="inline-flex items-center gap-2 border border-cream/35 hover:border-cream bg-charcoal/30 hover:bg-charcoal/50 backdrop-blur-md text-cream px-6 sm:px-8 py-3.5 sm:py-4 text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-semibold rounded-xs transition-all duration-300 hover:-translate-y-0.5"
+              className="font-saira inline-flex items-center gap-2 border border-cream/35 hover:border-cream bg-charcoal/30 hover:bg-charcoal/50 backdrop-blur-md text-cream px-7 sm:px-9 py-3.5 sm:py-4 text-[11.5px] sm:text-[12px] uppercase tracking-[0.18em] font-semibold rounded-xs transition-all duration-300 hover:-translate-y-0.5"
             >
               <span>{campaign.secondaryCtaText}</span>
             </LocalizedClientLink>
           </div>
         </div>
 
-        {/* Bottom Bar: Seamless Floating Luxury Curation & Controls (No dividing line) */}
+        {/* Bottom Bar: Seamless Floating Luxury Curation & Controls */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 py-1">
           {/* Curation Note in floating luxury badge */}
-          <div className="flex items-center gap-2 text-[11px] sm:text-[11.5px] tracking-wider font-light bg-charcoal/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+          <div className="font-saira flex items-center gap-2 text-[11px] sm:text-[11.5px] tracking-wider font-light bg-charcoal/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
             <span className="text-petal-veil text-xs">✦</span>
             <span className="text-coral-blossom/80 uppercase text-[9.5px] tracking-[0.16em] font-semibold">Curation</span>
             <span className="text-white/30">|</span>
@@ -229,7 +208,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Slide Index Display */}
-            <span className="font-editorial text-sm sm:text-base tracking-widest font-light text-coral-blossom">
+            <span className="font-saira text-sm sm:text-base tracking-widest font-medium text-coral-blossom">
               0{currentSlide + 1}
               <span className="text-cream/40 text-xs ml-1">/ 0{CAMPAIGNS.length}</span>
             </span>
