@@ -253,8 +253,8 @@ export function BrandLogo({
             <Image
               src="/images/camelia-blossom.png"
               alt="Camelia blossom"
-              width={isCompact ? 32 : 58}
-              height={isCompact ? 32 : 58}
+              width={isCompact ? 44 : 72}
+              height={isCompact ? 44 : 72}
               className="object-contain block"
               style={{
                 transition: "width .45s cubic-bezier(.34,1.3,.64,1), height .45s cubic-bezier(.34,1.3,.64,1)",
@@ -268,7 +268,7 @@ export function BrandLogo({
             style={{
               fontFamily: "var(--font-geraldine), 'Geraldine', cursive, Georgia, serif",
               color: isHovered && !isCompact ? "#5C2D18" : "#3D2418",
-              fontSize: isCompact ? "26px" : "34px",
+              fontSize: isCompact ? "34px" : "44px",
               transition: "color .3s ease, font-size .45s cubic-bezier(.34,1.3,.64,1), letter-spacing .3s ease",
               letterSpacing: isHovered && !isCompact ? "0.01em" : "0em",
               lineHeight: 1,
